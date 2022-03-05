@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :tags
+  resources :housings
+  resources :transactions
   root to: 'home#index'
   devise_for :users
   resources :users

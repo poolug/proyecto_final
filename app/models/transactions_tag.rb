@@ -1,0 +1,2 @@
+class TransactionsTag < ApplicationRecord
+end

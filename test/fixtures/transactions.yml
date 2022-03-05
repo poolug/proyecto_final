@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyString
+  mount: 1.5
+  date_transaction: 2022-03-05
+  type: 1
+
+two:
+  description: MyString
+  mount: 1.5
+  date_transaction: 2022-03-05
+  type: 1
