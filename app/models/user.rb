@@ -6,4 +6,13 @@ class User < ApplicationRecord
   has_many :transactions
   has_many :housing_users
   has_many :housings, through: :housing_users, dependent: :destroy
+
+  enum role: [ :Admin, :Member ]
+
+  before_create :user_default
+
+  def user_default
+    self.role = 0
+  end
+
 end

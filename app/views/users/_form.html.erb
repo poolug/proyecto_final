@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :role %>
-    <%= form.number_field :role %>
+    <%= form.select :role, @roles, include_blank: true %>
   </div>
 
   <div class="actions">
