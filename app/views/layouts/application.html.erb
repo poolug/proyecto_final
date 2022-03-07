@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ProyectoFinal</title>
+    <title>Mis Finanzas Saludables</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,7 +10,14 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
+    <%= link_to 'Home', root_path %> |
+    <%= link_to 'Housings', housing_users_path %> |
+    <%= link_to 'My Housing', housings_path %> |
+    <% if user_signed_in? %>
+      <span><%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %></span>
+      <% else %>
+      <span><%= link_to 'Iniciar sesión', new_user_session_path %></span>
+    <% end %>
     <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>

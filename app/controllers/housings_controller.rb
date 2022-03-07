@@ -1,5 +1,6 @@
 class HousingsController < ApplicationController
   before_action :set_housing, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: %i[ create new ]
 
   # GET /housings or /housings.json
   def index
@@ -22,9 +23,14 @@ class HousingsController < ApplicationController
   # POST /housings or /housings.json
   def create
     @housing = Housing.new(housing_params)
+    @housing.user_id = current_user.id if current_user
 
     respond_to do |format|
       if @housing.save
+        housing_user = HousingUser.new
+        housing_user.user_id = current_user.id
+        housing_user.housing_id = Housing.last.id
+        housing_user.save
         format.html { redirect_to housing_url(@housing), notice: "Housing was successfully created." }
         format.json { render :show, status: :created, location: @housing }
       else
@@ -65,6 +71,6 @@ class HousingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def housing_params
-      params.fetch(:housing, {})
+      params.require(:housing).permit(:name)
     end
 end

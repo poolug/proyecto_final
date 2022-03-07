@@ -10,16 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_05_204716) do
+ActiveRecord::Schema.define(version: 2022_03_06_194221) do
 
   create_table "housing_users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "housing_id"
+    t.integer "user_id"
+    t.index ["housing_id"], name: "index_housing_users_on_housing_id"
+    t.index ["user_id"], name: "index_housing_users_on_user_id"
   end
 
   create_table "housings", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_housings_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|

@@ -9,6 +9,7 @@
       <th>Mount</th>
       <th>Date transaction</th>
       <th>Type</th>
+      <th>User</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,7 +20,8 @@
         <td><%= transaction.description %></td>
         <td><%= transaction.mount %></td>
         <td><%= transaction.date_transaction %></td>
-        <td><%= transaction.type %></td>
+        <td><%= transaction.type_transaction %></td>
+        <td><%= transaction.user_id %></td>
         <td><%= link_to 'Show', transaction %></td>
         <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
         <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
