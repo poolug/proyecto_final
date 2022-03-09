@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :super_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   resources :tags
   resources :housings
   resources :transactions

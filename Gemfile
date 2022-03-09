@@ -66,3 +66,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # autenticación para los usuarios
 gem 'devise'
+
+# gestor del "superusuario" de la app
+gem 'activeadmin'
+
+# bootstrap
+gem 'bootstrap', '~> 4.3.1'
+gem 'jquery-rails'

@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Mis Finanzas Saludables</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -14,6 +15,7 @@
     <%= link_to 'Housings', housing_users_path %> |
     <%= link_to 'My Housing', housings_path %> |
     <% if user_signed_in? %>
+      <span><%= current_user.email %></span> |
       <span><%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %></span>
       <% else %>
       <span><%= link_to 'Iniciar sesión', new_user_session_path %></span>

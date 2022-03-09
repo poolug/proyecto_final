@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :housing_users
   has_many :housings, through: :housing_users, dependent: :destroy
 
-  enum role: [ :Admin, :Member ]
+  enum role: %i[ Admin Member ]
 
   before_create :user_default
 
