@@ -5,8 +5,13 @@ Rails.application.routes.draw do
   resources :housings
   resources :transactions
   resources :housing_users
-  root to: 'transactions#index'
-  devise_for :users
+  root to: 'home#index'
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
   resources :users
+
+  # cancelar edición del current_user sin recargar página
+  get 'users/:id/cancel', to: 'users#cancel_editing', as: 'cancel'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

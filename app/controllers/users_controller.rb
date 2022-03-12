@@ -10,6 +10,8 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
+    housing_current_user_id = User.where({id: current_user.id})
+    @housing_current_user = Housing.where({user_id: housing_current_user_id})
   end
 
   # GET /users/new
@@ -62,7 +64,12 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      if User.exists?(id: (params[:id]))
+        @user = User.find(params[:id])
+      else
+        flash[:notice] = "User not found" 
+        redirect_to user_path(current_user.id)
+      end
     end
 
     # Only allow a list of trusted parameters through.

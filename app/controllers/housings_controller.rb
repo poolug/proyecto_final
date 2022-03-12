@@ -1,6 +1,6 @@
 class HousingsController < ApplicationController
   before_action :set_housing, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, only: %i[ create new ]
+  before_action :authenticate_user!, only: %i[ create new index show ]
 
   # GET /housings or /housings.json
   def index

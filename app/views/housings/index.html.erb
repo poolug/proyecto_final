@@ -13,7 +13,7 @@
     <% @housings.each do |housing| %>
       <tr>
         <td><%= housing.name %></td>
-        <td><%= housing.housing_users.last.user.email %></td>
+        <td><%= housing.user_email %></td>
         <td><%= link_to 'Show', housing %></td>
         <td><%= link_to 'Edit', edit_housing_path(housing) %></td>
         <td><%= link_to 'Destroy', housing, method: :delete, data: { confirm: 'Are you sure?' } %></td>

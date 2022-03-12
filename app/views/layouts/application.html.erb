@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Mis Finanzas Saludables</title>
+    <title>Chanchito Sano</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,16 +13,10 @@
   </head>
 
   <body>
-    <%= link_to 'Home', root_path %> |
-    <%= link_to 'Housings', housing_users_path %> |
-    <%= link_to 'My Housing', housings_path %> |
-    <% if user_signed_in? %>
-      <span><%= current_user.email %></span> |
-      <span><%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %></span>
-      <% else %>
-      <span><%= link_to 'Iniciar sesión', new_user_session_path %></span>
-    <% end %>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <%= render "shared/navbar" %>
+    <div class="container">
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
   </body>
 </html>

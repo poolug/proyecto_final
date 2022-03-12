@@ -8,17 +8,17 @@
 
 # crea 2 usuarios con role "Admin"
 2.times do |i|
-  User.create!(name: "user-admin-#{i+1}",
-    email: "user-admin-#{i+1}@email.com",
+  User.create!(name: "admin-#{i+1}",
+    email: "admin-#{i+1}@email.com",
     role: 0,
     password: "123456",
     password_confirmation: "123456")
   end
 
-  # crea 2 usuarios con role "Member"
+# crea 2 usuarios con role "Member"
 2.times do |i|
-  User.create!(name: "user-member-#{i+1}",
-              email: "user-member-#{i+1}@email.com",
+  User.create!(name: "member-#{i+1}",
+              email: "member-#{i+1}@email.com",
               role: 1,
               password: "123456",
               password_confirmation: "123456")

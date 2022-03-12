@@ -11,6 +11,8 @@ class User < ApplicationRecord
 
   before_create :user_default
 
+  validates :name, presence: true
+
   def user_default
     self.role = 0
   end

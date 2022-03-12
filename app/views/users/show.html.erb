@@ -1,14 +1,50 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+<div id="form"></div>
 
-<p>
-  <strong>Role:</strong>
-  <%= @user.role %>
-</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Role</th>
+      <th>Housing Actives</th>
+      <th>Members</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+  <tbody>
+    <tr id="user-<%= @user.id %>">
+      <td><%= @user.name %> | <%= link_to 'Edit', edit_user_path(@user), remote: true %> </td>
+      <td><%= @user.role %></td>
+      <td>
+        <% @housing_current_user.each do |housing| %>
+          <ul>
+            <li><%= housing.name %> </li>
+          </ul>
+        <% end %>
+      </td>
+      <td>members | <%= link_to 'Edit', edit_user_path(@user), remote: true %></td>
+    </tr>
+  </tbody>
+
+</table>
+
+<h3>Housing Inactives</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><% @housing_current_user.each do |housing| %>
+        <li><%= housing.name %></li>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+
+</table>

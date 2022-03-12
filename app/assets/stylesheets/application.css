@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  margin: 0px !important;
+}
+
+nav a, span {
+  color: white !important;
+  text-decoration: none !important;
+}
+
+nav a:hover {
+  color: aliceblue !important;
+  background-color: inherit;
+  text-decoration: underline !important;
+}
