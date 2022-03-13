@@ -5,10 +5,10 @@ class HomeController < ApplicationController
     @morning = time >= "00" && time < "12"
     @morning_say = "buenos días 🌞"
 
-    @afternoon = time >= "12" && time <= "18"
+    @afternoon = time >= "12" && time <= "19"
     @afternoon_say = "buenas tardes 🌞"
 
-    @nigth = time >= "19"
+    @nigth = time > "19"
     @nigth_say = "buenas noches 🌒"
   end
 end

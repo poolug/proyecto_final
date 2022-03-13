@@ -1,6 +1,37 @@
 <h1>Editing Housing</h1>
 
-<%= render 'form', housing: @housing %>
+<%= form_with(model: @housing, local: true) do |form| %>
+  <% if @housing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@housing.errors.count, "error") %> prohibited this housing from being saved:</h2>
+
+      <ul>
+      <% @housing.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :status %>
+    <%= form.select :status, @statuses, include_blank: true %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :inactive_at %>
+    <%= form.date_select :inactive_at %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Update", class: "btn btn-success" %>
+  </div>
+<% end %>
 
 <%= link_to 'Show', @housing %> |
 <%= link_to 'Back', housings_path %>

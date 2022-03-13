@@ -10,12 +10,15 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag asset_path('chanchito.png') %>
   </head>
 
   <body>
     <%= render "shared/navbar" %>
-    <div class="container">
-      <p class="alert"><%= alert %></p>
+    <div class="container pt-3">
+      <% flash.each do | notice, value| %>
+        <p id="alert" class="notice text-center alert alert-primary"><%= value %></p>
+      <% end %>
       <%= yield %>
     </div>
   </body>

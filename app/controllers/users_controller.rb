@@ -11,7 +11,9 @@ class UsersController < ApplicationController
   # GET /users/1 or /users/1.json
   def show
     housing_current_user_id = User.where({id: current_user.id})
-    @housing_current_user = Housing.where({user_id: housing_current_user_id})
+    @housings_actives = Housing.where({user_id: housing_current_user_id}).where({status: 0})
+
+    @housings_inactives = Housing.where({user_id: housing_current_user_id}).where({status: 1})
   end
 
   # GET /users/new

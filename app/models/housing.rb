@@ -4,6 +4,8 @@ class Housing < ApplicationRecord
   validates :name, presence: :true
   # belongs_to :user
 
+  enum status: %i[ Active Inactive ]
+
   def user_email
     self.housing_users.last.user.email
   end

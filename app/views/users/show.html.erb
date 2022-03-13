@@ -18,7 +18,7 @@
       <td><%= @user.name %> | <%= link_to 'Edit', edit_user_path(@user), remote: true %> </td>
       <td><%= @user.role %></td>
       <td>
-        <% @housing_current_user.each do |housing| %>
+        <% @housings_actives.each do |housing| %>
           <ul>
             <li><%= housing.name %> </li>
           </ul>
@@ -35,16 +35,17 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Inactive at</th>
     </tr>
   </thead>
 
   <tbody>
-    <tr>
-      <td><% @housing_current_user.each do |housing| %>
-        <li><%= housing.name %></li>
-        <% end %>
-      </td>
-    </tr>
+    <% @housings_inactives.each do |housing| %>
+      <tr>
+        <td> <%= housing.name %> </td>
+        <td> <%= housing.inactive_at %> </td>
+      </tr>
+    <% end %>
   </tbody>
 
 </table>
