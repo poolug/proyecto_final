@@ -1,4 +1,4 @@
-<h1>Editing Housing</h1>
+<h1>Editando Vivienda: <%= @housing.name %></h1>
 
 <%= form_with(model: @housing, local: true) do |form| %>
   <% if @housing.errors.any? %>
@@ -23,15 +23,7 @@
     <%= form.select :status, @statuses, include_blank: true %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :inactive_at %>
-    <%= form.date_select :inactive_at %>
-  </div>
-
   <div class="actions">
-    <%= form.submit "Update", class: "btn btn-success" %>
+    <%= form.submit "Update", class: "btn btn-success", data: { confirm: 'Confirmar edición' } %> | <%= link_to 'Volver', housings_path, class: "btn btn-info" %>
   </div>
 <% end %>
-
-<%= link_to 'Show', @housing %> |
-<%= link_to 'Back', housings_path %>

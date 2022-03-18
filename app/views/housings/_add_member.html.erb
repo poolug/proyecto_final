@@ -1,0 +1,7 @@
+<%= form_tag(create_member_path(params[:id]), remote: true) do %>
+  <div>
+    <%= email_field_tag 'email', 'email@example.com' %>
+    <%= hidden_field_tag 'housing', params[:id] %>
+    <%= submit_tag 'Invitar', data: { disable_with: "Enviando invitación..." } %>
+  </div>
+<% end %>

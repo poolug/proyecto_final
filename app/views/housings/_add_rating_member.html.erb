@@ -1,0 +1,7 @@
+<%= form_tag(rating_member_path(params[:id]), remote: true) do %>
+  <div>
+    <%= select_tag 'rating', options_for_select(["Responsable", "Regular", "Mala_Paga"]), include_blank: true %>
+    <%= hidden_field_tag 'users', params[:id] %>
+    <%= submit_tag 'Evaluar' %>
+  </div>
+<% end %>

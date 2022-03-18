@@ -5,10 +5,57 @@ class HousingsController < ApplicationController
 
   # GET /housings or /housings.json
   def index
-    housing_current_user_id = User.where({id: current_user.id})
-    @housings_actives = Housing.where({user_id: housing_current_user_id}).where({status: 0})
+    self.housings_inactives
+    self.housings_actives
+  end
 
-    @housings_inactives = Housing.where({user_id: housing_current_user_id}).where({status: 1})
+  def housings_actives
+    @housings_actives = Housing.where({user_id: current_user.id}).where({status: "Active"})
+  end
+
+  def housings_inactives
+    @housings_inactives = Housing.where({user_id: current_user.id}).where({status: "Inactive"})
+  end
+
+  def add_rating_member
+    self.housings_actives
+    @housing = params[:id]
+  end
+
+  def rating_member
+    rating = params[:rating]
+    @user.update(rating: rating)
+  end
+
+  def add_member
+    self.housings_actives
+    @housing = params[:id]
+  end
+
+  def create_member
+    email = params[:email]
+    @user = User.find_by(email: email)
+    
+    if @user.present?
+      @notice = "El correo ingresado ya existe"
+    else
+      @user = User.new
+      @user.role = 1
+      @user.email = email
+      @user.name = "miembro-#{Housing.find(params[:housing].to_i).name}"
+      @user.password = "123456"
+      @user.password_confirmation = "123456"
+      @user.save!
+      
+      user_housing = HousingUser.new
+      user_housing.user_id = @user.id
+      user_housing.housing_id = params[:housing].to_i
+      user_housing.save!
+      
+      sleep 2
+      @notice = "Usuario creado para #{Housing.find(user_housing.housing_id).name}"
+      render js: "$('#add-member-form').empty(); $('#add-button').show();"
+    end
   end
 
   # GET /housings/1 or /housings/1.json
@@ -35,7 +82,7 @@ class HousingsController < ApplicationController
         housing_user.user_id = current_user.id
         housing_user.housing_id = Housing.last.id
         housing_user.save
-        format.html { redirect_to housings_path, notice: "Housing Name: #{Housing.find(housing_user.housing_id).name} was successfully created." }
+        format.html { redirect_to housings_path, notice: "Has creado la vivienda: #{Housing.find(housing_user.housing_id).name}" }
         format.json { render :show, status: :created, location: @housing }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -50,9 +97,17 @@ class HousingsController < ApplicationController
     housing_user.user_id = current_user.id
     housing_user.housing_id = Housing.last.id
 
+    email = params[:email]
+    @user = User.find_by(email: email)
+
+    housing = params[:status]
+    if housing = "Inactive"
+      @housing.update(inactive_at: Time.now)
+    end
+
     respond_to do |format|
       if @housing.update(housing_params)
-        format.html { redirect_to housings_path, notice: "Housing Name: #{Housing.find(housing_user.housing_id).name} was successfully created." }
+        format.html { redirect_to housings_path, notice: "Has editado la vivienda: #{Housing.find(housing_user.housing_id).name}" }
         format.json { render :show, status: :ok, location: @housing }
       else
         format.html { render :edit, status: :unprocessable_entity }

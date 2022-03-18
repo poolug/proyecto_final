@@ -25,4 +25,8 @@
   User.last.update(role: 1)
 end
 
+Housing.create!(name: "Housing Demo", status: "Active", user_id: User.first.id)
+
+HousingUser.create!(user_id: User.first.id, housing_id: Housing.first.id)
+
 SuperUser.create!(email: 'super@email.com', password: '123456', password_confirmation: '123456') if Rails.env.development?

@@ -9,12 +9,7 @@ class User < ApplicationRecord
 
   enum role: %i[ Admin Member ]
 
-  before_create :user_default
+  enum rating: %i[ Responsable Regular Mala_Paga]
 
   validates :name, presence: true
-
-  def user_default
-    self.role = 0
-  end
-
 end

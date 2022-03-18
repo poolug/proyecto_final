@@ -6,7 +6,4 @@ class Housing < ApplicationRecord
 
   enum status: %i[ Active Inactive ]
 
-  def user_email
-    self.housing_users.last.user.email
-  end
 end

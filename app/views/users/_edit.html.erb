@@ -1,4 +1,4 @@
-<h1>Editing User: <%= "#{@user.name}" %></h1>
+<h1>Editando Usuario: <%= "#{@user.name}" %></h1>
 
 <%= form_with(model: @user, remote: true) do |form| %>
   <% if @user.errors.any? %>
@@ -12,9 +12,14 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :name %>
     <%= form.text_field :name %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :rating %>
+    <%= form.select :rating, @ratings, include_blank: true %>
   </div>
 
   <div class="actions">

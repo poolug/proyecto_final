@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
   before_action :role_select, only: %i[ new edit create update index ]
-
+  before_action :rating_select, only: %i[ new edit create update index ]
 
   # GET /users or /users.json
   def index
@@ -10,10 +10,16 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
-    housing_current_user_id = User.where({id: current_user.id})
-    @housings_actives = Housing.where({user_id: housing_current_user_id}).where({status: 0})
+    self.housings_actives
+    self.housings_inactives
+  end
 
-    @housings_inactives = Housing.where({user_id: housing_current_user_id}).where({status: 1})
+  def housings_actives
+    @housings_actives = Housing.where({user_id: current_user.id}).where({status: "Active"})
+  end
+
+  def housings_inactives
+    @housings_inactives = Housing.where({user_id: current_user.id}).where({status: "Inactive"})
   end
 
   # GET /users/new
@@ -66,20 +72,29 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      if User.exists?(id: (params[:id]))
+      if User.exists?(id: params[:id])
         @user = User.find(params[:id])
       else
         flash[:notice] = "User not found" 
-        redirect_to user_path(current_user.id)
+        redirect_to user_path(current_user.id) and return
+      end
+
+      if @user != User.find(current_user.id)
+        redirect_to user_path(current_user.id) and return
+        flash[:alert]= 'No tienes permisos suficientes para realizar esta acción'
       end
     end
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :role)
+      params.require(:user).permit(:name, :role, :rating)
     end
 
     def role_select
       @roles = User.roles.keys.to_a
+    end
+
+    def rating_select
+      @ratings = User.ratings.keys.to_a
     end
 end
