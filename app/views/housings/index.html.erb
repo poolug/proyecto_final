@@ -12,15 +12,13 @@
   </thead>
 
   <tbody>
-  <div id="form-rating"></div>
     <% @housings_actives.each do |housing| %>
       <tr>
         <td class="align-middle"><%= User.find(housing.user_id).name %></td>
         <td class="align-middle"><%= housing.name %></td>
         <td class="align-middle">
           <% housing.users.each_with_index do |user_id, index| %>
-            <li> <%= "Usuario #{index + 1}: #{user_id.name} | #{user_id.email}" %> | <%= link_to 'Evaluar', add_rating_member_path(user_id.id), method: :patch, remote: true  %></li>
-            <div id="form-rating-<%= user_id.id %>" ></div>
+            <li> <%= "Usuario #{index + 1}: #{user_id.name} | #{user_id.email}" %> </li>
           <% end %>
           <div id="add-member-form-<%= housing.id %>" ></div>
           <span id="add-button"><%= link_to 'Agregar', add_member_path(housing.id), remote: true %></span>

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    @users = User.all
+    @users = User.includes(:housing_users).order("created_at ASC")
   end
 
   # GET /users/1 or /users/1.json
@@ -15,11 +15,31 @@ class UsersController < ApplicationController
   end
 
   def housings_actives
-    @housings_actives = Housing.where({user_id: current_user.id}).where({status: "Active"})
+    @housings_actives = Housing.includes(:users).where({user_id: current_user.id}).where({status: "Active"})
   end
 
   def housings_inactives
-    @housings_inactives = Housing.where({user_id: current_user.id}).where({status: "Inactive"})
+    @housings_inactives = Housing.includes(:users).where({user_id: current_user.id}).where({status: "Inactive"})
+  end
+
+  def add_rating_member
+    @user = User.find(params[:id])
+    rating = params[:rating]
+
+    respond_to do |format|
+      if @user.update(rating: rating)
+        format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def rating_member
+    # @user = User.find(params[:id])
+    # @user = User.new
   end
 
   # GET /users/new

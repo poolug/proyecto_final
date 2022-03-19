@@ -10,21 +10,11 @@ class HousingsController < ApplicationController
   end
 
   def housings_actives
-    @housings_actives = Housing.where({user_id: current_user.id}).where({status: "Active"})
+    @housings_actives = Housing.includes(:users).where({user_id: current_user.id}).where({status: "Active"})
   end
 
   def housings_inactives
-    @housings_inactives = Housing.where({user_id: current_user.id}).where({status: "Inactive"})
-  end
-
-  def add_rating_member
-    self.housings_actives
-    @housing = params[:id]
-  end
-
-  def rating_member
-    rating = params[:rating]
-    @user.update(rating: rating)
+    @housings_inactives = Housing.includes(:users).where({user_id: current_user.id}).where({status: "Inactive"})
   end
 
   def add_member
@@ -93,13 +83,6 @@ class HousingsController < ApplicationController
 
   # PATCH/PUT /housings/1 or /housings/1.json
   def update
-    housing_user = HousingUser.new
-    housing_user.user_id = current_user.id
-    housing_user.housing_id = Housing.last.id
-
-    email = params[:email]
-    @user = User.find_by(email: email)
-
     housing = params[:status]
     if housing = "Inactive"
       @housing.update(inactive_at: Time.now)
@@ -107,7 +90,7 @@ class HousingsController < ApplicationController
 
     respond_to do |format|
       if @housing.update(housing_params)
-        format.html { redirect_to housings_path, notice: "Has editado la vivienda: #{Housing.find(housing_user.housing_id).name}" }
+        format.html { redirect_to housings_path, notice: "Has editado la vivienda: #{@housing.name}" }
         format.json { render :show, status: :ok, location: @housing }
       else
         format.html { render :edit, status: :unprocessable_entity }

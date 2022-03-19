@@ -18,11 +18,8 @@ Rails.application.routes.draw do
   post 'housings/:id/create_member', to: 'housings#create_member', as: 'create_member'
   get 'housings/:id/add_member', to: 'housings#add_member', as: 'add_member'
 
-  # post 'housings/rating_member', to: 'housings#rating_member', as: 'rating_member'
-  # get 'housings/:id/add_rating_member', to: 'housings#add_rating_member', as: 'add_rating_member'
-  
   # agregar evaluación para los miembros de una vivienda
-  post 'housings/:id/rating_member', to: 'housings#rating_member', as: 'rating_member'
-  patch 'housings/:id/add_rating_member', to: 'housings#add_rating_member', as: 'add_rating_member'
+  get 'users/:id/rating_member', to: 'users#rating_member', as: 'rating_member'
+  post 'users/:id/add_rating_member', to: 'users#add_rating_member', as: 'add_rating_member'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
