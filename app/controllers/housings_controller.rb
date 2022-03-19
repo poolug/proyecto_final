@@ -119,7 +119,7 @@ class HousingsController < ApplicationController
         redirect_to housings_path and return
       end
 
-      if @housing != Housing.find_by(user_id: current_user.id)
+      if Housing.find(params[:id]).user_id != current_user.id
         flash[:alert]= 'No tienes permisos suficientes para realizar esta acción'
         redirect_to housings_path and return
       end

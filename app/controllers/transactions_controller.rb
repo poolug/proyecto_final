@@ -1,11 +1,15 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: %i[ show edit update destroy ]
   before_action :type_transaction_select, only: %i[ new edit create update index ]
-  before_action :authenticate_user!, only: %i[ create new ]
+  before_action :authenticate_user!, only: %i[ create new show index]
 
   # GET /transactions or /transactions.json
   def index
-    @transactions = Transaction.all
+    @transactions = self.transactions_current_user
+  end
+
+  def transactions_current_user
+    Transaction.all.where(user_id: current_user.id).order(created_at: :asc)
   end
 
   # GET /transactions/1 or /transactions/1.json
@@ -63,7 +67,17 @@ class TransactionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_transaction
-      @transaction = Transaction.find(params[:id])
+      if Transaction.exists?(id: params[:id])
+        @transaction = Transaction.find(params[:id])
+      else
+        flash[:notice] = "Transacción no encontrada" 
+        redirect_to transactions_path and return
+      end
+  
+      if Transaction.find(params[:id]).user_id != current_user.id
+        flash[:alert]= 'No tienes permisos suficientes para realizar esta acción'
+        redirect_to transactions_path and return
+      end
     end
 
     # Only allow a list of trusted parameters through.

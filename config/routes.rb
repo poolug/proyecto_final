@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   }
   resources :users
 
+  get '/housings/:id', to: redirect('/housings')
+
   # cancelar edición del current_user sin recargar página
   get 'users/:id/cancel', to: 'users#cancel_editing', as: 'cancel'
 
