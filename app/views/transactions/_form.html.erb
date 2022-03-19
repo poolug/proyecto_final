@@ -11,24 +11,24 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :description %>
+  <div class="form-group">
+    <%= form.label :description, "Descripción" %>
     <%= form.text_field :description %>
   </div>
 
-  <div class="field">
-    <%= form.label :mount %>
+  <div class="form-group">
+    <%= form.label :mount, "Monto" %>
     <%= form.text_field :mount %>
   </div>
 
-  <div class="field">
-    <%= form.label :date_transaction %>
+  <div class="form-group">
+    <%= form.label :date_transaction, "Fecha" %>
     <%= form.date_select :date_transaction %>
   </div>
 
-  <div class="field">
-    <%= form.label :type_transaction %>
-    <%= form.number_field :type_transaction %>
+  <div class="form-group">
+    <%= form.label :type_transaction, "Tipo" %>
+    <%= form.select :type_transaction, @type_transactions, include_blank: true %>
   </div>
 
   <div class="actions">

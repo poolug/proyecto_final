@@ -9,9 +9,14 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <%= link_to 'Mis viviendas', housings_path, class:"nav-link" if user_signed_in? %>
-      </li>
+      <% if user_signed_in? %>
+        <li class="nav-item active">
+          <%= link_to 'Mis viviendas', housings_path, class:"nav-link" %>
+        </li>
+        <li class="nav-item active">
+          <%= link_to 'Transacciónes', transactions_path, class:"nav-link" if user_signed_in? %>
+        </li>
+      <% end %>
     </ul>
     <span>
       <% if user_signed_in? %>

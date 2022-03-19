@@ -100,8 +100,8 @@ class UsersController < ApplicationController
       end
 
       if @user != User.find(current_user.id)
-        redirect_to user_path(current_user.id) and return
         flash[:alert]= 'No tienes permisos suficientes para realizar esta acción'
+        redirect_to user_path(current_user.id) and return
       end
     end
 

@@ -112,7 +112,17 @@ class HousingsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_housing
-      @housing = Housing.find(params[:id])
+      if Housing.exists?(id: params[:id])
+        @housing = Housing.find(params[:id])
+      else
+        flash[:notice] = "Vivienda no encontrada" 
+        redirect_to housings_path and return
+      end
+
+      if @housing != Housing.find_by(user_id: current_user.id)
+        flash[:alert]= 'No tienes permisos suficientes para realizar esta acción'
+        redirect_to housings_path and return
+      end
     end
 
     # Only allow a list of trusted parameters through.

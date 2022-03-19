@@ -1,5 +1,6 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: %i[ show edit update destroy ]
+  before_action :type_transaction_select, only: %i[ new edit create update index ]
   before_action :authenticate_user!, only: %i[ create new ]
 
   # GET /transactions or /transactions.json
@@ -68,5 +69,9 @@ class TransactionsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def transaction_params
       params.require(:transaction).permit(:description, :mount, :date_transaction, :type_transaction)
+    end
+
+    def type_transaction_select
+      @type_transactions = Transaction.type_transactions.keys.to_a
     end
 end
