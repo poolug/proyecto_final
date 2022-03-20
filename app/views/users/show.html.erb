@@ -1,6 +1,7 @@
 <div id="form-edit-user"></div>
 
 <div>
+  <li class="img-avatar"><%= image_tag @user.avatar %></li>
   <li id="user-<%= @user.id %>"> <b>Nombre:</b> <%= @user.name %></li>
   <li> <b>Email:</b> <%= @user.email %></li>
   <li> <b>Role:</b> <%= @user.role %> </li>

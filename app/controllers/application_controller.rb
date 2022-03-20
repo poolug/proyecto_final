@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
 
   # permite agregar parámeetros adicionales al modelo User, el cual tiene instalado devise
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :avatar])
   end
 end
