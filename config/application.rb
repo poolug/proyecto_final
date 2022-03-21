@@ -12,7 +12,9 @@ module ProyectoFinal
     config.load_defaults 5.2
 
     config.time_zone = 'America/Santiago'
-    config.active_record.default_timezone = :local
+
+    # Error al hacer deply
+    # config.active_record.default_timezone = :local
 
     Groupdate.time_zone = 'America/Santiago'
     # Settings in config/environments/* take precedence over those specified here.
