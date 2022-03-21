@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: %i[ set_user ]
   before_action :set_user, only: %i[ show edit update destroy ]
   before_action :role_select, only: %i[ new edit create update index ]
   before_action :rating_select, only: %i[ new edit create update index ]
@@ -95,7 +96,7 @@ class UsersController < ApplicationController
       if User.exists?(id: params[:id])
         @user = User.find(params[:id])
       else
-        flash[:notice] = "User not found" 
+        flash[:notice] = "Usuario no encontrado" 
         redirect_to user_path(current_user.id) and return
       end
 

@@ -85,3 +85,5 @@ gem 'figaro'
 
 # Amazon S3
 gem "aws-sdk-s3", "~> 1.111"
+
+gem 'chartkick'

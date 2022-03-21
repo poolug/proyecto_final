@@ -1,7 +1,7 @@
 class TransactionsController < ApplicationController
+  before_action :authenticate_user!, only: %i[ set_transaction index ]
   before_action :set_transaction, only: %i[ show edit update destroy ]
   before_action :type_transaction_select, only: %i[ new edit create update index ]
-  before_action :authenticate_user!, only: %i[ create new show index]
 
   # GET /transactions or /transactions.json
   def index
