@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'dashboard/index'
   devise_for :super_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users

@@ -10,23 +10,42 @@
 2.times do |i|
   User.create!(name: "admin-#{i+1}",
     email: "admin-#{i+1}@email.com",
-    role: 0,
+    role: 0, # admin
     password: "123456",
     password_confirmation: "123456")
   end
 
-# crea 2 usuarios con role "Member"
-2.times do |i|
-  User.create!(name: "member-#{i+1}",
-              email: "member-#{i+1}@email.com",
-              role: 1,
-              password: "123456",
-              password_confirmation: "123456")
-  User.last.update(role: 1)
-end
-
 Housing.create!(name: "Housing Demo", status: "Active", user_id: User.first.id)
+Housing.create!(name: "Housing Demo 2", status: "Active", user_id: User.second.id)
 
 HousingUser.create!(user_id: User.first.id, housing_id: Housing.first.id)
+HousingUser.create!(user_id: User.second.id, housing_id: Housing.second.id)
 
-SuperUser.create!(email: 'super@email.com', password: '123456', password_confirmation: '123456') if Rails.env.development?
+# crea 5 usuarios con role "Member"
+5.times do |i|
+  User.create!(name: "member-#{i+1}",
+              email: "member-#{i+1}@email.com",
+              role: 1, # member
+              password: "123456",
+              password_confirmation: "123456")
+  HousingUser.create!(user_id: User.last.id, housing_id: Housing.first.id)
+end
+
+5.times do |u|
+  user = User.last.id
+  User.create!(name: "member-#{u+1}",
+              email: "member-#{user+1}@email.com",
+              role: 1, # member
+              password: "123456",
+              password_confirmation: "123456")
+  HousingUser.create!(user_id: User.last.id, housing_id: Housing.last.id)
+end
+
+# ingresos y gastos para el usuario 1
+10.times do |t|
+  min_date = Time.now - 3.month
+  max_date = Time.now - 1.month
+  Transaction.create!(user_id: User.first.id, description: "transaction-#{t+1}", mount: rand(10000..50000), date_transaction: rand(min_date..max_date), type_transaction: rand(0..1))
+end
+
+SuperUser.create!(email: 'super@email.com', password: '123456', password_confirmation: '123456')
