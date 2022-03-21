@@ -18,12 +18,12 @@
 
   <div class="form-group">
     <%= form.label :mount, "Monto" %>
-    <%= form.text_field :mount %>
+    <%= form.number_field :mount %>
   </div>
 
   <div class="form-group">
     <%= form.label :date_transaction, "Fecha" %>
-    <%= form.date_select :date_transaction %>
+    <%= form.date_field :date_transaction %>
   </div>
 
   <div class="form-group">
@@ -32,6 +32,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Guardar" %>
   </div>
 <% end %>

@@ -1,15 +1,14 @@
 Rails.application.routes.draw do
+  get 'dashboard/index'
   devise_for :super_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+  devise_for :users
   resources :tags
   resources :housings
   resources :transactions
   resources :housing_users
-  root to: 'home#index'
-  devise_for :users, controllers: {
-    sessions: 'users/sessions'
-  }
   resources :users
+  root to: 'home#index'
 
   get '/housings/:id', to: redirect('/housings')
 

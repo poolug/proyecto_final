@@ -1,5 +1,7 @@
 {
   "name": "proyecto_final",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "highcharts": "^10.0.0"
+  }
 }

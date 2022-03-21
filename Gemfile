@@ -51,6 +51,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   # graficar modelos
   gem 'rails-erd'
+  gem 'dotenv-rails'
 end
 
 group :test do
@@ -59,6 +60,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  gem 'dotenv-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -75,3 +77,14 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 
 gem 'cocoon'
+
+gem 'omniauth-facebook'
+
+# ocultar credenciales
+gem 'figaro'
+
+# Amazon S3
+gem "aws-sdk-s3", "~> 1.111"
+
+gem 'chartkick'
+gem "groupdate"

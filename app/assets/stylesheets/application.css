@@ -32,3 +32,9 @@ nav a:hover {
 li {
   list-style: none;
 }
+
+.img-avatar img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%
+}

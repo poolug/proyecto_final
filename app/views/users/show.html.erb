@@ -1,6 +1,11 @@
 <div id="form-edit-user"></div>
 
 <div>
+  <% if @user.avatar.nil? %>
+    <li class="img-avatar"><%= image_tag @user.avatar %></li>
+    <% else %>
+    <li> No tienes una foto de perfil :( </li>
+  <% end %>
   <li id="user-<%= @user.id %>"> <b>Nombre:</b> <%= @user.name %></li>
   <li> <b>Email:</b> <%= @user.email %></li>
   <li> <b>Role:</b> <%= @user.role %> </li>
