@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
   get 'dashboard/index'
   devise_for :super_users, ActiveAdmin::Devise.config
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  }
   ActiveAdmin.routes(self)
-  devise_for :users
+  
   resources :tags
   resources :housings
   resources :transactions
