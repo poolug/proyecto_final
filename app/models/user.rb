@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :housing_users
   has_many :housings, through: :housing_users, dependent: :destroy
 
-  has_one_attached :avatar
+  has_one_attached :avatar, dependent: :destroy
 
   enum role: %i[ Admin Member ]
 
