@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: %i[ set_user ]
+  before_action :authenticate_user!, only: %i[ set_user show ]
   before_action :set_user, only: %i[ show edit update destroy ]
   before_action :role_select, only: %i[ new edit create update index ]
   before_action :rating_select, only: %i[ new edit create update index ]
