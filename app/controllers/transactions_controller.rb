@@ -16,7 +16,7 @@ class TransactionsController < ApplicationController
   end
 
   def transactions_current_user_admin
-    Transaction.includes(:transaction_users).where(user_id: current_user.id).order(created_at: :asc)
+    Transaction.includes(:user).where(user_id: current_user.id).order(created_at: :asc)
   end
 
   def housings_actives

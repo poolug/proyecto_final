@@ -18,9 +18,26 @@ body {
   margin: 0px !important;
 }
 
+.nv-perfomance {
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+  border-radius: 0px 0px 15px 15px;
+}
+
 nav a, span {
   color: white !important;
   text-decoration: none !important;
+  background-color: transparent !important;
+  width: fit-content;
+}
+
+nav .btn-danger {
+  background-color: #dc3545 !important;
+}
+
+svg {
+  fill: white;
+  width: 30px;
+  height: 30px
 }
 
 li {
@@ -32,4 +49,45 @@ img.img-avatar {
   height: 100px;
   border-radius: 50%;
   border: solid gray;
+}
+
+.btn-info {
+  border-color: steelblue !important;
+  background-color: steelblue !important;
+}
+
+@media (max-width: 992px) {
+
+  /*Estilo y posición de los hr*/
+  .btn-info {
+    margin-top: 1em;
+  }
+
+  .index-mobile {
+    text-align: center;
+  }
+  
+  a {
+    color: white !important;
+  }
+
+  .icons-navbar-mobile {
+    margin: 1em;
+  }
+
+  .item-navbar-mobile {
+    margin-top: 1em;
+  }
+
+  hr {
+    width: 97%;
+    background-color: white;
+    margin: 0;
+  }
+}
+
+@media (min-width: 991px) {
+  .index-mobile {
+    display: none;
+  }
 }

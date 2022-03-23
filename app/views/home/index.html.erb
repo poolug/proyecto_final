@@ -1,4 +1,5 @@
 <% if user_signed_in? %>
+<div class="text-center">
   <% if @morning %>
     <h1>Hola! <%= @morning_say %>, <%= current_user.name %></h1>
     <% elsif @afternoon %>
@@ -6,20 +7,30 @@
     <% elsif @nigth %>
       <h1>Hola! <%= @nigth_say %>, <%= current_user.name %></h1>
   <% end %>
+<div>
 <% else %>
-<div class="text-center">
-  <h1>¡Bienvenido a Chanchito Sano!</h1>
-  <h6>Tener cuentas claras contigo mismo, nunca ha sido más sano.</h6>
-  <%= image_tag 'chanchito.png', class: "img-fluid", alt: "logo-index", style: "max-width: 50%" %>
+
+<div class="index-mobile mt-2">
+  <% if user_signed_in? %>
+  <% else %>
+  <%= link_to "Iniciar sesión", new_user_session_path, class: "btn btn-success" %>
+  <%= button_to "Iniciar sesión con Facebook", user_facebook_omniauth_authorize_path, class: "btn btn-info" %>
+  <% end %>
 </div>
 
-<div>
+<div class="text-center mt-5">
+  <h1>¡Bienvenido a Chanchito Sano!</h1>
+  <%= image_tag 'chanchito.png', class: "img-fluid", alt: "logo-index", style: "max-width: 50%" %>
+  <h6>Tener cuentas claras contigo mismo, nunca ha sido más sano.</h6>
+</div>
+<hr>
+<div style="font-size: large">
   <p>
-    Chanchito Sano llegó para ayudarte en tus gastos diarios, de tu vivienda, emprendimiento o lo que necesites organizar
+    Chanchito Sano llegó para ayudarte en tus gastos diarios, de tu vivienda, emprendimiento o lo que necesites organizar.
   </p>
 
   <p>
-    A través de tu chanchito, también podrás visualizar tus proyecciones de gastos, lo que te permitirá planificiar ese gasto que quieres o necesites realizar, validando que no te deje vaya a generar un desajuste económico a corto o mediano plazo.
+    A través de tu chanchito, también podrás visualizar tus proyecciones de gastos, lo que te permitirá planificiar esa compra, inversión o gasto que necesites realizar, validando que no te vaya a generar un desajuste económico a corto o mediano plazo.
   </p>
 </div>
 <% end %>
