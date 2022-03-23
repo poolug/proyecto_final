@@ -35,7 +35,7 @@
       <td> <%= housing.name %> </td>
       <td>
         <% housing.users.each_with_index do |user_id, index| %>
-          <li> <%= "Usuario #{index + 1}: #{user_id.email}" %> | <%= link_to 'Evaluar', rating_member_path(user_id.id), method: :get, remote: true %></li>
+          <li> <%= "Usuario #{index + 1}: #{user_id.email}" %> | <%= link_to 'Evaluar', rating_member_path(user_id.id), method: :get, remote: true, class:"btn btn-success mb-1" %></li>
           <div id="form-rating-<%= user_id.id %>" ></div>
         <% end %>
       </td>

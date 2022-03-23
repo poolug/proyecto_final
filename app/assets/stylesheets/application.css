@@ -23,11 +23,15 @@ body {
   border-radius: 0px 0px 15px 15px;
 }
 
-nav a, span {
+nav a, nav span {
   color: white !important;
   text-decoration: none !important;
   background-color: transparent !important;
   width: fit-content;
+}
+
+body a {
+  color: white !important;
 }
 
 nav .btn-danger {

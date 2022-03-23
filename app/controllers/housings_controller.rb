@@ -5,8 +5,8 @@ class HousingsController < ApplicationController
 
   # GET /housings or /housings.json
   def index
-    self.housings_inactives
-    self.housings_actives
+    housings_inactives
+    housings_actives
   end
 
   def housings_actives
@@ -18,16 +18,18 @@ class HousingsController < ApplicationController
   end
 
   def add_member
-    self.housings_actives
+    housings_actives
     @housing = params[:id]
   end
 
   def create_member
     email = params[:email]
     @user = User.find_by(email: email)
-    
+    @housing = params[:id]
+
     if @user.present?
       @notice = "El correo ingresado ya existe"
+      render "error_create_member.js.erb"
     else
       @user = User.new
       @user.role = 1
@@ -43,8 +45,8 @@ class HousingsController < ApplicationController
       user_housing.save!
       
       sleep 2
-      @notice = "Usuario creado para #{Housing.find(user_housing.housing_id).name}"
-      render js: "$('#add-member-form').empty(); $('#add-button').show();"
+      @notice = "Usuario creado para la vivienda #{Housing.find(user_housing.housing_id).name}"
+      render "create_member.js.erb"
     end
   end
 
