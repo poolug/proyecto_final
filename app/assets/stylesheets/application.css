@@ -23,12 +23,6 @@ nav a, span {
   text-decoration: none !important;
 }
 
-nav a:hover {
-  color: aliceblue !important;
-  background-color: inherit;
-  text-decoration: underline !important;
-}
-
 li {
   list-style: none;
 }

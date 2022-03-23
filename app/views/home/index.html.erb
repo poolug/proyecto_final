@@ -7,7 +7,19 @@
       <h1>Hola! <%= @nigth_say %>, <%= current_user.name %></h1>
   <% end %>
 <% else %>
+<div class="text-center">
   <h1>¡Bienvenido a Chanchito Sano!</h1>
   <h6>Tener cuentas claras contigo mismo, nunca ha sido más sano.</h6>
-  <%= image_tag 'chanchito.png', style: "width: 50%" %>
+  <%= image_tag 'chanchito.png', class: "img-fluid", alt: "logo-index", style: "max-width: 50%" %>
+</div>
+
+<div>
+  <p>
+    Chanchito Sano llegó para ayudarte en tus gastos diarios, de tu vivienda, emprendimiento o lo que necesites organizar
+  </p>
+
+  <p>
+    A través de tu chanchito, también podrás visualizar tus proyecciones de gastos, lo que te permitirá planificiar ese gasto que quieres o necesites realizar, validando que no te deje vaya a generar un desajuste económico a corto o mediano plazo.
+  </p>
+</div>
 <% end %>

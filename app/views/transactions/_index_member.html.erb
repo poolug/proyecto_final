@@ -1,0 +1,43 @@
+<h1>Movimientos</h1>
+
+<table class="table">
+  <thead>
+    <tr class="text-center">
+      <th>Fecha</th>
+      <th>Descripción</th>
+      <th>Ingreso</th>
+      <th>Gasto</th>
+      <th>Vivienda</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @transactions_member.each do |transaction| %>
+      <tr>
+        <td><%= transaction.date_transaction.strftime("%d-%m-%Y") %></td>
+        <td><%= transaction.description %></td>
+        <td class="text-right">
+          <% if transaction.Ingreso? %>
+            <%= number_to_currency(transaction.mount, precision: 0) %>
+            <% else %>
+            -
+          <% end %>
+        </td>
+        <td class="text-right">
+          <% if transaction.Gasto_Compartido? %>
+            <%= number_to_currency(transaction.mount, precision: 0) %>
+            <% else %>
+            -
+          <% end %>
+        </td>
+        <td class="text-center">
+          <%= transaction.housing_id %>
+        </td>
+        <td><%= link_to 'Show', transaction %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

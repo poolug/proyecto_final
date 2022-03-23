@@ -28,8 +28,8 @@
         <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete %>
       <% else %>
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active mr-2"> <%= button_to "Iniciar sesión", new_user_session_path %> </li>
-        <li class="nav-item active"> <%= button_to "Iniciar sesión con Facebook", user_facebook_omniauth_authorize_path %> </li>
+        <li class="nav-item active mr-2"> <%= link_to "Iniciar sesión", new_user_session_path, class: "btn btn-success" %> </li>
+        <li class="nav-item active"> <%= button_to "Iniciar sesión con Facebook", user_facebook_omniauth_authorize_path, class: "btn btn-info" %> </li>
       </ul>
       <% end %>
     </span>

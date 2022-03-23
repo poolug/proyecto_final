@@ -1,43 +1,7 @@
-<h1>Movimientos</h1>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Fecha</th>
-      <th>Descripción</th>
-      <th>Ingreso</th>
-      <th>Gasto</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @transactions.each do |transaction| %>
-      <tr>
-        <td><%= transaction.date_transaction %></td>
-        <td><%= transaction.description %></td>
-        <td>
-          <% if transaction.Ingreso? %>
-            <%= number_to_currency(transaction.mount, precision: 0) %>
-            <% else %>
-            -
-          <% end %>
-        </td>
-        <td>
-          <% if transaction.Gasto? %>
-            <%= number_to_currency(transaction.mount, precision: 0) %>
-            <% else %>
-            -
-          <% end %>
-        </td>
-        <td><%= link_to 'Show', transaction %></td>
-        <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
-        <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'Nuevo movimiento', new_transaction_path %>
+<% if current_user.Member? %>
+  <h1>Eres miembro de la vivienda</h1>
+  <%= render 'index_member', transaction: @transaction %>
+  <% else %>
+  <h1>Eres administrador de la vivienda</h1>
+  <%= render 'index_admin', transaction: @transaction %>
+<% end %>

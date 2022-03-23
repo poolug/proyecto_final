@@ -5,13 +5,23 @@ class TransactionsController < ApplicationController
 
   # GET /transactions or /transactions.json
   def index
-    @transactions = self.transactions_current_user
+    @transactions = transactions_current_user_admin
+    @transactions_member = transactions_current_user_member
   end
 
-  def transactions_current_user
-    Transaction.all.where(user_id: current_user.id).order(created_at: :asc)
+  def transactions_current_user_member
+    # @transactions_member = Transaction.includes(:user).where(user_id: current_user.id).where(type_transaction: "Gasto_Compartido")
+
+    # @transactions_member = Transaction.joins(:user)
   end
 
+  def transactions_current_user_admin
+    Transaction.includes(:transaction_users).where(user_id: current_user.id).order(created_at: :asc)
+  end
+
+  def housings_actives
+    @housings_actives = Housing.includes(:housing_users).where({user_id: current_user.id}).where({status: "Active"})
+  end
   # GET /transactions/1 or /transactions/1.json
   def show
   end
@@ -19,20 +29,27 @@ class TransactionsController < ApplicationController
   # GET /transactions/new
   def new
     @transaction = Transaction.new
+    housings_actives
   end
 
   # GET /transactions/1/edit
   def edit
+    housings_actives
   end
 
   # POST /transactions or /transactions.json
   def create
     @transaction = Transaction.new(transaction_params)
-    @transaction.user_id = current_user.id if current_user
+    # @transaction.user_id = current_user.id if current_user
+    housings_actives
 
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to transaction_url(@transaction), notice: "Transaction was successfully created." }
+        transaction_user = TransactionUser.new
+        transaction_user.user_id = current_user.id
+        transaction_user.transaction_id = Transaction.last.id
+        transaction_user.save!
+        format.html { redirect_to transactions_path, notice: "Movimiento guardado con éxito." }
         format.json { render :show, status: :created, location: @transaction }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -59,7 +76,7 @@ class TransactionsController < ApplicationController
     @transaction.destroy
 
     respond_to do |format|
-      format.html { redirect_to transactions_url, notice: "Transaction was successfully destroyed." }
+      format.html { redirect_to transactions_url, notice: "Movimiento eliminado." }
       format.json { head :no_content }
     end
   end
@@ -82,7 +99,7 @@ class TransactionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def transaction_params
-      params.require(:transaction).permit(:description, :mount, :date_transaction, :type_transaction)
+      params.require(:transaction).permit(:description, :mount, :date_transaction, :type_transaction, :housing_id)
     end
 
     def type_transaction_select
