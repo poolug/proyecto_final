@@ -2,7 +2,6 @@
   "name": "proyecto_final",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^6.1.1",
     "highcharts": "^10.0.0"
   }
 }
