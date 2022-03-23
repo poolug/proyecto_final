@@ -40,6 +40,15 @@ nav .btn-danger {
   height: 30px
 }
 
+.svg-icon:hover {
+  fill: gray;
+}
+
+#add-button a {
+  background-color: transparent !important;
+  box-shadow: -4px 20px 9px -5px #000000;
+}
+
 li {
   list-style: none;
 }

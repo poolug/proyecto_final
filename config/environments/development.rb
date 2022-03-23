@@ -64,4 +64,16 @@ Rails.application.configure do
 
   # use S3 Amazon
   config.active_storage.service = :amazon
+
+  ActionMailer::Base.smtp_settings = {
+    :user_name => '-oWGsN75TbWqD1yMcwG1eA', # This is the string literal 'apikey', NOT the ID of your API key
+    :password => 'SG.-oWGsN75TbWqD1yMcwG1eA.u-rhT-Q95oe58AlzOQmlWzDCXcweAnu1ocjWyuRmRoQ', # This is the secret sendgrid API key which was issued during API key creation
+    :domain => 'localhost:3000',
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
+
+  config.action_mailer.delivery_method = :smtp
 end

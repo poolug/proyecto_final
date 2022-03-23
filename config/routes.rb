@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'estimate/index'
   get 'dashboard/index'
   devise_for :super_users, ActiveAdmin::Devise.config
   devise_for :users, controllers: {

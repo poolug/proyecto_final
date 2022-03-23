@@ -88,5 +88,9 @@ gem 'figaro'
 # Amazon S3
 gem "aws-sdk-s3", "~> 1.111"
 
+# graficar
 gem 'chartkick'
 gem "groupdate"
+
+# envío de correos
+gem 'sendgrid-ruby'

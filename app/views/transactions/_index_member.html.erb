@@ -5,8 +5,8 @@
     <tr class="text-center">
       <th>Fecha</th>
       <th>Descripción</th>
-      <th>Ingreso</th>
       <th>Gasto</th>
+      <th>Cuota por miembro</th>
       <th>Vivienda</th>
       <th colspan="4"></th>
     </tr>
@@ -18,23 +18,18 @@
         <td><%= transaction.date_transaction.strftime("%d-%m-%Y") %></td>
         <td><%= transaction.description %></td>
         <td class="text-right">
-          <% if transaction.Ingreso? %>
+          <% if transaction.Gasto_Compartido? %>
             <%= number_to_currency(transaction.mount, precision: 0) %>
-            <% else %>
-            -
           <% end %>
         </td>
         <td class="text-right">
           <% if transaction.Gasto_Compartido? %>
-            <%= number_to_currency(transaction.mount, precision: 0) %>
-            <% else %>
-            -
+            <%= number_to_currency(transaction.mount / HousingUser.where(housing_id: 1).count, precision: 0) %>
           <% end %>
         </td>
         <td class="text-center">
           <%= transaction.housing_id %>
         </td>
-        <td><%= link_to 'Show', transaction %></td>
       </tr>
     <% end %>
   </tbody>

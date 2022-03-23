@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_23_030919) do
+ActiveRecord::Schema.define(version: 2022_03_22_155050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,15 +87,6 @@ ActiveRecord::Schema.define(version: 2022_03_23_030919) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "transaction_users", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.bigint "transaction_id"
-    t.index ["transaction_id"], name: "index_transaction_users_on_transaction_id"
-    t.index ["user_id"], name: "index_transaction_users_on_user_id"
-  end
-
   create_table "transactions", force: :cascade do |t|
     t.string "description"
     t.integer "mount"
@@ -103,8 +94,8 @@ ActiveRecord::Schema.define(version: 2022_03_23_030919) do
     t.integer "type_transaction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "housing_id"
     t.bigint "user_id"
+    t.bigint "housing_id"
     t.index ["housing_id"], name: "index_transactions_on_housing_id"
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end
@@ -137,8 +128,6 @@ ActiveRecord::Schema.define(version: 2022_03_23_030919) do
   add_foreign_key "housing_users", "housings"
   add_foreign_key "housing_users", "users"
   add_foreign_key "housings", "users"
-  add_foreign_key "transaction_users", "transactions"
-  add_foreign_key "transaction_users", "users"
   add_foreign_key "transactions", "housings"
   add_foreign_key "transactions", "users"
 end

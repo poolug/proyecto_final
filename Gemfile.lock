@@ -268,6 +268,7 @@ GEM
       rexml
     ruby2_keywords (0.0.5)
     ruby_dep (1.5.0)
+    ruby_http_client (3.5.5)
     rubyzip (2.3.2)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
@@ -292,6 +293,8 @@ GEM
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
+    sendgrid-ruby (6.6.2)
+      ruby_http_client (~> 3.4)
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -356,6 +359,7 @@ DEPENDENCIES
   rails-erd
   sass-rails (~> 5.0)
   selenium-webdriver
+  sendgrid-ruby
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

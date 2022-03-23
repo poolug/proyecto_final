@@ -7,12 +7,17 @@ class TransactionsController < ApplicationController
   def index
     @transactions = transactions_current_user_admin
     @transactions_member = transactions_current_user_member
+    @housing = housing_current_user
+  end
+
+  def housing_current_user
+    user = HousingUser.find(current_user.id).housing_id
+    Housing.find(user).name
   end
 
   def transactions_current_user_member
-    # @transactions_member = Transaction.includes(:user).where(user_id: current_user.id).where(type_transaction: "Gasto_Compartido")
-
-    # @transactions_member = Transaction.joins(:user)
+    current_housing = HousingUser.find(current_user.id).housing_id
+    Transaction.where(housing_id: current_housing).where(type_transaction: "Gasto_Compartido").order(created_at: :asc)
   end
 
   def transactions_current_user_admin
@@ -40,15 +45,11 @@ class TransactionsController < ApplicationController
   # POST /transactions or /transactions.json
   def create
     @transaction = Transaction.new(transaction_params)
-    # @transaction.user_id = current_user.id if current_user
+    @transaction.user_id = current_user.id if current_user
     housings_actives
 
     respond_to do |format|
       if @transaction.save
-        transaction_user = TransactionUser.new
-        transaction_user.user_id = current_user.id
-        transaction_user.transaction_id = Transaction.last.id
-        transaction_user.save!
         format.html { redirect_to transactions_path, notice: "Movimiento guardado con éxito." }
         format.json { render :show, status: :created, location: @transaction }
       else
