@@ -33,4 +33,4 @@
 # Ignore application configuration
 /config/application.yml
 sendgrid.env
-facebook.env
+facebook.envsendgrid.env
