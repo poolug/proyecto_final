@@ -15,6 +15,13 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
+  after_create :send_welcome_email
+
+  # envía correo, luego de crear nuevo usuario
+  def send_welcome_email
+    UserNotifierMailer.send_signup_email(self).deliver
+  end
+
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]

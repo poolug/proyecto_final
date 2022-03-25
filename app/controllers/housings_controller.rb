@@ -73,7 +73,7 @@ class HousingsController < ApplicationController
         housing_user.user_id = current_user.id
         housing_user.housing_id = Housing.last.id
         housing_user.save
-        UserNotifierMailer.send_signup_email(current_user).deliver
+
         format.html { redirect_to housings_path, notice: "Has creado la vivienda: #{Housing.find(housing_user.housing_id).name}" }
         format.json { render :show, status: :created, location: @housing }
       else

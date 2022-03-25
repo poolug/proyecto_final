@@ -30,6 +30,10 @@ nav a, nav span {
   width: fit-content;
 }
 
+nav .btn-success {
+  background-color: #28a745 !important;
+}
+
 body a {
   color: white !important;
 }
