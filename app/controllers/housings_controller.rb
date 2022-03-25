@@ -5,7 +5,6 @@ class HousingsController < ApplicationController
 
   # GET /housings or /housings.json
   def index
-    housings_inactives
     housings_actives
   end
 

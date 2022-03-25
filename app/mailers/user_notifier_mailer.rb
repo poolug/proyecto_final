@@ -1,7 +1,7 @@
 class UserNotifierMailer < ApplicationMailer
-  default :from => 'pauluzcategui43@gmail.com'
+  default :from => 'paul.uzcategui@clickfono.com' # debes incluir un correo con dominio privado
 
-  # send a signup email to the user, pass in the user object that   contains the user's email address
+  # send a signup email to the user, pass in the user object that contains the user's email address
   def send_signup_email(user)
     @user = user
     mail( :to => @user.email,

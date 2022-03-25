@@ -65,4 +65,5 @@ Rails.application.configure do
   # use S3 Amazon
   config.active_storage.service = :amazon
 
+  # config.action_mailer.delivery_method = :smtp
 end
