@@ -19,7 +19,9 @@ class User < ApplicationRecord
 
   # envía correo, luego de crear nuevo usuario
   def send_welcome_email
-    UserNotifierMailer.send_signup_email(self).deliver
+    if self.Admin?
+      UserNotifierMailer.send_signup_email(self).deliver
+    end
   end
 
   def self.new_with_session(params, session)

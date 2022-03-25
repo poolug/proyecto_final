@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hola <%= @user.name %>!</h1>
+
+    <h3>El usuario: <%= @email %>, te ha invitado a que seas miembro en Chanchito Sano</h3>
+
+    <p>Estos son tus datos para inicar sesión</p>
+    <ul>
+      <li>
+        <b>Correo:</b> <%= @user.email %>
+      </li>
+      <li>
+        <b>Contraseña:</b> 123456
+      </li>
+      <li>
+        <b>Link de acceso:</b> https://chanchito-sano-poolug.herokuapp.com/
+      </li>
+    </ul>
+
+    <p>Ahora disfruta de la aplicación y ten un muy buen día 😃.</p>
+
+    --
+    <br>
+    <i>Chanchito Sano</i>
+    <br>
+    <i>Proyecto Final - Full Stack G48</i>
+  </body>
+</html>

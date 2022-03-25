@@ -7,4 +7,12 @@ class UserNotifierMailer < ApplicationMailer
     mail( :to => @user.email,
     :subject => 'Muchas gracias, por registrarte en Chanchito Sano' )
   end
+
+  def send_signup_member_email(user_member, email_admin)
+    @user = user_member
+    @email = email_admin
+
+    mail( :to => @user.email,
+    :subject => 'Te han invitado a Chanchito Sano' )
+  end
 end

@@ -26,6 +26,8 @@ class HousingsController < ApplicationController
     @user = User.find_by(email: email)
     @housing = params[:id]
 
+    current_user_email = current_user.email
+
     if @user.present?
       @notice = "El correo ingresado ya existe"
       render "error_create_member.js.erb"
@@ -37,6 +39,7 @@ class HousingsController < ApplicationController
       @user.password = "123456"
       @user.password_confirmation = "123456"
       @user.save!
+      UserNotifierMailer.send_signup_member_email(@user, current_user_email).deliver
       
       user_housing = HousingUser.new
       user_housing.user_id = @user.id
