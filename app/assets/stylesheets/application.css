@@ -52,6 +52,13 @@ nav .btn-danger {
   fill: gray;
 }
 
+.svg-icon-body {
+  fill: gray;
+  width: 30px;
+  height: 30px;
+  background-color: inherit;
+}
+
 #add-button a {
   background-color: transparent !important;
   box-shadow: -4px 20px 9px -5px #000000;
@@ -71,6 +78,39 @@ img.img-avatar {
 .btn-info {
   border-color: steelblue !important;
   background-color: steelblue !important;
+}
+
+.wrap {
+  border: solid;
+}
+
+.housing-active {
+  color: #28a745;
+  font-size: x-large;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }
 
 @media (max-width: 992px) {

@@ -1,38 +1,37 @@
 <h1>Movimientos</h1>
 
-<table class="table">
-  <thead>
-    <tr class="text-center">
-      <th>Fecha</th>
-      <th>Descripción</th>
-      <th>Gasto</th>
-      <th>Cuota por miembro</th>
-      <th>Vivienda</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @transactions_member.each do |transaction| %>
+<div class="wrap">
+  <table class="table table-striped">
+    <thead class="thead-light">
       <tr>
-        <td><%= transaction.date_transaction.strftime("%d-%m-%Y") %></td>
-        <td><%= transaction.description %></td>
-        <td class="text-right">
-          <% if transaction.Gasto_Compartido? %>
-            <%= number_to_currency(transaction.mount, precision: 0) %>
-          <% end %>
-        </td>
-        <td class="text-right">
-          <% if transaction.Gasto_Compartido? %>
-            <%= number_to_currency(transaction.mount / HousingUser.where(housing_id: 1).count, precision: 0) %>
-          <% end %>
-        </td>
-        <td class="text-center">
-          <%= transaction.housing_id %>
-        </td>
+        <th>Fecha</th>
+        <th>Descripción</th>
+        <th class="text-right">Gasto</th>
+        <th class="text-right">Cuota por miembro</th>
+        <th class="text-center">Vivienda</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @transactions_member.each do |transaction| %>
+        <tr>
+          <td><%= transaction.date_transaction.strftime("%d-%m-%Y") %></td>
+          <td><%= transaction.description %></td>
+          <td class="text-right">
+            <% if transaction.Gasto_Compartido? %>
+              <%= number_to_currency(transaction.mount, precision: 0) %>
+            <% end %>
+          </td>
+          <td class="text-right">
+            <% if transaction.Gasto_Compartido? %>
+              <%= number_to_currency(transaction.mount / @members_current_housing.count, precision: 0) %>
+            <% end %>
+          </td>
+          <td class="text-center">
+            <%= transaction.housing_id %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

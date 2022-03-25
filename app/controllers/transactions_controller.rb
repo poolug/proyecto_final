@@ -7,17 +7,21 @@ class TransactionsController < ApplicationController
   def index
     @transactions = transactions_current_user_admin
     @transactions_member = transactions_current_user_member
-    @housing = housing_current_user
+    @housing = housing_current_user_name
+    @members_current_housing = members_housing_current
   end
 
-  def housing_current_user
-    user = HousingUser.find(current_user.id).housing_id
-    Housing.find(user).name
+  def housing_current_user_name
+    Housing.find(@current_housing_admin).name
+  end
+
+  def members_housing_current
+    HousingUser.where(housing_id: @current_housing_admin)
   end
 
   def transactions_current_user_member
-    current_housing = HousingUser.find(current_user.id).housing_id
-    Transaction.where(housing_id: current_housing).where(type_transaction: "Gasto_Compartido").order(created_at: :asc)
+    @current_housing_admin = HousingUser.find_by(user_id: current_user.id).housing_id
+    Transaction.where(housing_id: @current_housing_admin).where(type_transaction: "Gasto_Compartido").order(created_at: :asc)
   end
 
   def transactions_current_user_admin
