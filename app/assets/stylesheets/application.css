@@ -89,29 +89,6 @@ img.img-avatar {
   font-size: x-large;
 }
 
-.tooltip {
-  position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black;
-}
-
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-
-  /* Position the tooltip */
-  position: absolute;
-  z-index: 1;
-}
-
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-}
 
 @media (max-width: 992px) {
 
@@ -141,10 +118,22 @@ img.img-avatar {
     background-color: white;
     margin: 0;
   }
+
+  .login {
+    border-radius: 9%;
+    border: gray solid;
+  }
 }
 
 @media (min-width: 991px) {
   .index-mobile {
     display: none;
+  }
+
+  .login {
+    border-radius: 5%;
+    border: gray solid;
+    margin-right: 30%;
+    margin-left: 30%;
   }
 }
