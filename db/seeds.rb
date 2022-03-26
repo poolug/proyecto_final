@@ -41,11 +41,11 @@ end
   HousingUser.create!(user_id: User.last.id, housing_id: Housing.last.id)
 end
 
-# ingresos y gastos para el usuario 1
-20.times do |t|
+# ingresos, gastos y gastos compartidos para el usuario 1
+30.times do |t|
   min_date = Time.now - 3.month
   max_date = Time.now - 1.month
-  Transaction.create!(user_id: User.first.id, description: "transaction-#{t+1}", mount: rand(10000..500000), date_transaction: rand(min_date..max_date), type_transaction: rand(0..1), housing_id: Housing.first.id)
+  Transaction.create!(user_id: User.first.id, description: "transaction-#{t+1}", mount: rand(10000..500000), date_transaction: rand(min_date..max_date), type_transaction: rand(0..2), housing_id: Housing.first.id)
 end
 
 SuperUser.create!(email: 'super@email.com', password: '123456', password_confirmation: '123456')

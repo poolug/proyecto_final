@@ -6,10 +6,16 @@ class HousingsController < ApplicationController
   # GET /housings or /housings.json
   def index
     housings_actives
+    @housings_actives_member = Housing.members_on_housing.where(id: housings_current_user_member)
   end
 
   def housings_actives
     @housings_actives = Housing.includes(:users).where({user_id: current_user.id}).where({status: "Active"})
+  end
+
+  def housings_current_user_member
+    HousingUser.find_by(user_id: current_user.id).housing_id
+    # Housing.where(id: current_housing_admin).where(status: "Active").order(created_at: :asc)
   end
 
   def housings_inactives

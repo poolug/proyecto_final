@@ -1,0 +1,32 @@
+<h1>Mis Viviendas</h1>
+
+<div class="wrap">
+  <table class="table table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th>Administrador</th>
+        <th>Nombre de la vivienda</th>
+        <th>Miembros en la vivienda</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @housings_actives_member.each do |housing| %>
+        <tr>
+          <td class="align-middle"><%= User.find(housing.user_id).name %></td>
+          <td class="align-middle"><%= housing.name %></td>
+          <td class="align-middle">
+            <% housing.users.each_with_index do |user_id, index| %>
+              <li> <%= "Usuario #{index + 1}: #{user_id.name} | #{user_id.email}" %> </li>
+            <% end %>
+          </td>
+          <td class="align-middle housing-active">
+            <%= "Activa" if housing.status == "Active" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<br>
