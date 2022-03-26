@@ -26,16 +26,15 @@ class UsersController < ApplicationController
   def add_rating_member
     @user = User.find(params[:id])
     rating = params[:rating]
-
-    respond_to do |format|
-      if @user.update(rating: rating)
-        format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    
+    if params[:rating] == ""
+      @notice = "Debes seleccionar una evaluación!"
+      render "error_rating_member.js.erb"
+    elsif @user.update(rating: rating)
+      @notice = "Usuario evaluado!"
+      render "success_rating_member.js.erb"
     end
+
   end
 
   def rating_member

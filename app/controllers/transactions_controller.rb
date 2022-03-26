@@ -5,10 +5,12 @@ class TransactionsController < ApplicationController
 
   # GET /transactions or /transactions.json
   def index
-    @transactions = transactions_current_user_admin
     @transactions_member = transactions_current_user_member
     @housing = housing_current_user_name
     @members_current_housing = members_housing_current
+
+    @q = Transaction.ransack(params[:q])
+    @transactions_admin = @q.result.includes(:user).where(user_id: current_user.id).order(created_at: :asc)
   end
 
   def housing_current_user_name
@@ -24,9 +26,9 @@ class TransactionsController < ApplicationController
     Transaction.where(housing_id: @current_housing_admin).where(type_transaction: "Gasto_Compartido").order(created_at: :asc)
   end
 
-  def transactions_current_user_admin
-    Transaction.includes(:user).where(user_id: current_user.id).order(created_at: :asc)
-  end
+  # def transactions_current_user_admin
+  #   Transaction.includes(:user).where(user_id: current_user.id).order(created_at: :asc)
+  # end
 
   def housings_actives
     @housings_actives = Housing.includes(:housing_users).where({user_id: current_user.id}).where({status: "Active"})

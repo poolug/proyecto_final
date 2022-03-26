@@ -13,28 +13,28 @@
 
   <div class="form-group">
     <%= form.label :description, "Descripción" %>
-    <%= form.text_field :description %>
+    <%= form.text_field :description, class: 'form-control' %>
   </div>
 
   <div class="form-group">
     <%= form.label :mount, "Monto" %>
-    <%= form.number_field :mount %>
+    <%= form.number_field :mount, class: 'form-control' %>
   </div>
 
   <div class="form-group">
     <%= form.label :date_transaction, "Fecha" %>
-    <%= form.date_field :date_transaction, value: Time.now.strftime("%Y-%m-%d") %>
+    <%= form.date_field :date_transaction, value: Time.now.strftime("%Y-%m-%d"), class: 'form-control' %>
     <br>
   </div>
 
   <div class="form-group">
     <%= form.label :type_transaction, "Tipo" %>
-    <%= form.select :type_transaction, @type_transactions, include_blank: true %>
+    <%= form.select :type_transaction, @type_transactions, {include_blank: true}, class: 'form-control' %>
   </div>
 
   <div class="form-group">
     <%= form.label :housing_id, "Vivienda" %>
-    <%= form.collection_select :housing_id, @housings_actives, :id, :name, include_blank: true %>
+    <%= form.collection_select :housing_id, @housings_actives, :id, :name, {include_blank: true}, class: 'form-control' %>
   </div>
 
   <div class="actions">

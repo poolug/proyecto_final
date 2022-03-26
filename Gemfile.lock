@@ -363,6 +363,7 @@ DEPENDENCIES
   rails (~> 5.2.6)
   rails-erd
   rails_12factor
+  ransack
   sass-rails (~> 5.0)
   selenium-webdriver
   sendgrid-ruby

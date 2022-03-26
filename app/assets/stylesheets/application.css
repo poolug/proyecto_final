@@ -89,6 +89,17 @@ img.img-avatar {
   font-size: x-large;
 }
 
+#profile, .form-edit-user {
+  margin-top: 1em;
+  border: solid;
+  border-radius: 19px;
+  padding: 1.5em;
+  max-width: fit-content;
+}
+
+select {
+  max-width: fit-content;
+}
 
 @media (max-width: 992px) {
 

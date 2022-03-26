@@ -1,0 +1,5 @@
+swal('<%= @notice %>','<%= @user.email %>','success');
+
+$('#form-rating-<%= @user.id %>').empty();
+
+$('#button-rating-<%= @user.id %>').show();

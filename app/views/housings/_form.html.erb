@@ -12,11 +12,11 @@
   <% end %>
 
   <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.label :name, "Nombre" %>
+    <%= form.text_field :name, class: 'form-control' %>
   </div>
 
   <div class="actions">
-    <%= form.submit "Create", class: "btn btn-success" %>
+    <%= form.submit "Crear", class: "btn btn-success" %> | <%= link_to 'Volver', housings_path, class: "btn btn-info" %>
   </div>
 <% end %>

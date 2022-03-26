@@ -1,5 +1,14 @@
 <h1>Movimientos</h1>
 
+<div>
+  <%= search_form_for @q do |f|%>
+    <div class="form-group form-inline ">
+      <%= f.select :type_transaction_eq, options_for_select(Transaction.type_transactions, @q.type_transaction_eq), {include_blank: true}, {class: 'form-control mx-2'} %>
+      <%= f.submit 'Filtrar', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
+
 <div class="wrap">
   <table class="table table-striped">
     <thead class="thead-light">
@@ -14,7 +23,7 @@
     </thead>
 
     <tbody>
-      <% @transactions.each do |transaction| %>
+      <% @transactions_admin.each do |transaction| %>
         <tr scope="row">
           <td><%= transaction.date_transaction.strftime("%d-%m-%Y") %></td>
           <td><%= transaction.description %></td>

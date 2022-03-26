@@ -97,3 +97,6 @@ gem "groupdate"
 
 # envío de correos
 gem 'sendgrid-ruby'
+
+# formulario de búsquedas
+gem 'ransack'
