@@ -131,3 +131,12 @@ amazon:
   region: <%= Figaro.env.region %>
   bucket: <%= Figaro.env.bucket %>
 ```
+## Agradecimientos 🎁
+
+* Sixto Guerra - Docente Academia Desafío Latam
+* Fabian Pino - Ayudante en Academia Desafío Latam
+* Alex Pérez - Docente en Academia Desafío Latam
+* Pablo Infanta - Ayudante en Academia Desafío Latam
+* Mirson Camadro - Ayudante en Academia Desafío Latam
+---
+⌨️ con ❤️ por [Paul Uzcategui](https://github.com/poolug) 😊
