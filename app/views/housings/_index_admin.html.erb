@@ -21,8 +21,8 @@
             <% housing.users.each_with_index do |user_id, index| %>
               <li> <%= "Usuario #{index + 1}: #{user_id.name} | #{user_id.email}" %> </li>
             <% end %>
-            <li id="member-after-add"></li>
-            <div id="add-member-form-<%= housing.id %>" ></div>
+            <div id="member-after-create-<%= housing.id %>"></div>
+            <li id="add-member-form-<%= housing.id %>" ></li>
             <li id="add-button"><%= link_to add_member_path(housing.id), remote: true do %>
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-plus" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00b341" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>

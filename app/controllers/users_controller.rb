@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    @users = User.includes(:housing_users).order("created_at ASC")
+    @users = User.includes(:housing_users).order(created_at: :asc)
   end
 
   # GET /users/1 or /users/1.json
@@ -70,7 +70,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
+        format.html { redirect_to user_url(@user), notice: "Usuario actualizado!" }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }

@@ -101,6 +101,10 @@ select {
   max-width: fit-content;
 }
 
+input {
+  max-width: fit-content;
+}
+
 @media (max-width: 992px) {
 
   /*Estilo y posición de los hr*/

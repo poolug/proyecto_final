@@ -1,5 +1,1 @@
-<% @housings_actives.each do |housing| %>
-  <% housing.users.each_with_index do |user_id, index| %>
-    <li> <%= "Usuario #{index + 1}: #{user_id.name} | #{user_id.email}" %> </li>
-  <% end %>
-<% end %>
+<li> <%= "#{User.last.name} | #{User.last.email}" %> </li>

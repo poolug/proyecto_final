@@ -37,11 +37,14 @@ class HousingsController < ApplicationController
     if @user.present?
       @notice = "El correo ingresado ya existe"
       render "error_create_member.js.erb"
+    elsif params[:email] == ""
+      @notice = "Debe ingresar un correo"
+      render "valid_create_member.js.erb"
     else
       @user = User.new
       @user.role = 1
       @user.email = email
-      @user.name = "miembro-#{Housing.find(params[:housing].to_i).name}"
+      @user.name = email
       @user.password = "123456"
       @user.password_confirmation = "123456"
       @user.save!

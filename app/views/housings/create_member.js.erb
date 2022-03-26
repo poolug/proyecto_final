@@ -2,4 +2,6 @@ swal('<%= @notice %>','<%= @user.email %>','success');
 
 $('#add-member-form-<%= @housing %>').empty();
 
+$('#member-after-create-<%= @housing %>').html('<%= escape_javascript render('housings/member') %>')
+
 $('#add-button').show();
