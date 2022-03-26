@@ -5,3 +5,5 @@ https://trello.com/b/6e3gEZ6x/chanchito-sano
 
 - Link al proyecto\
 https://chanchito-sano-poolug.herokuapp.com/
+
+- Datos iniciales
