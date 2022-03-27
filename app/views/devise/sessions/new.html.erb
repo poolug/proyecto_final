@@ -4,12 +4,12 @@
 
     <div class="field"><br>
       <%= f.label :email, "Correo electrónico" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
     </div><br>
 
     <div class="field">
       <%= f.label :password, "Contraseña" %>
-      <%= f.password_field :password, autocomplete: "current-password" %>
+      <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
     </div>
 
     <% if devise_mapping.rememberable? %>
@@ -27,12 +27,12 @@
 <div class="text-center pt-5">
   <div class="pb-5">
   <i>¿Olvidaste tu contraseña?</i><br>
-    <%= link_to "Recuperar contraseña", new_password_path(resource_name), class:"btn btn-warning text-dark" %>
+    <%= link_to "Recuperar contraseña", new_password_path(resource_name), class:"btn btn-warning text-dark", style:"border: 1px solid black" %>
   </div>
 
   <div>
     <i>Si no tienes cuenta, puedes registrarte acá</i><br>
-    <%= link_to 'Registrarse', new_user_registration_path, class: "btn btn-primary" %>
+    <%= link_to 'Registrarse', new_user_registration_path, class: "btn btn-primary", style:"border: 1px solid black" %>
   </div>
 </div>
 <% end %>

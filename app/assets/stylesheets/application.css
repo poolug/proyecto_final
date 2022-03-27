@@ -105,6 +105,11 @@ input {
   max-width: fit-content;
 }
 
+.login input.form-control {
+  display: inline-block !important;
+  border: 1px solid gray !important;
+}
+
 @media (max-width: 992px) {
 
   /*Estilo y posición de los hr*/
