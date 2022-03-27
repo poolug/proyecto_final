@@ -106,7 +106,7 @@ class TransactionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def transaction_params
-      params.require(:transaction).permit(:description, :mount, :date_transaction, :type_transaction, :housing_id)
+      params.require(:transaction).permit(:description, :mount, :date_transaction, :type_transaction, :housing_id, :tag_id)
     end
 
     def type_transaction_select

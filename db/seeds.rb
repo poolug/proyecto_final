@@ -21,6 +21,10 @@ Housing.create!(name: "Housing Demo Dos", status: "Active", user_id: User.second
 HousingUser.create!(user_id: User.first.id, housing_id: Housing.first.id)
 HousingUser.create!(user_id: User.second.id, housing_id: Housing.second.id)
 
+20.times do |i|
+  Tag.create!(name: "tag-#{i+1}")
+end
+
 # crea 5 usuarios con role "Member"
 5.times do |i|
   User.create!(name: "member-#{i+1}",
@@ -45,7 +49,14 @@ end
 30.times do |t|
   min_date = Time.now - 3.month
   max_date = Time.now - 1.month
-  Transaction.create!(user_id: User.first.id, description: "transaction-#{t+1}", mount: rand(10000..500000), date_transaction: rand(min_date..max_date), type_transaction: rand(0..2), housing_id: Housing.first.id)
+  Transaction.create!(user_id: User.first.id,
+                      description: "transaction-#{t+1}",
+                      mount: rand(10000..500000),
+                      date_transaction: rand(min_date..max_date),
+                      type_transaction: rand(0..2),
+                      housing_id: Housing.first.id,
+                      tag_id: rand(1..20)
+  )
 end
 
 SuperUser.create!(email: 'super@email.com', password: '123456', password_confirmation: '123456')

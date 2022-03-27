@@ -37,6 +37,11 @@
     <%= form.collection_select :housing_id, @housings_actives, :id, :name, {include_blank: true}, class: 'form-control' %>
   </div>
 
+  <div class="form-group">
+    <%= form.label :tag_id, "Sub clasificación" %>
+    <%= form.collection_select :tag_id, Tag.all_tags, :id, :name, {include_blank: true}, class: 'form-control' %>
+  </div>
+
   <div class="actions">
     <%= form.submit "Guardar", class: "btn btn-success" %> | <%= link_to 'Volver', transactions_path, class: "btn btn-info" %>
   </div>

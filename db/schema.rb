@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_22_155050) do
+ActiveRecord::Schema.define(version: 2022_03_27_184948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,13 +96,10 @@ ActiveRecord::Schema.define(version: 2022_03_22_155050) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "housing_id"
+    t.bigint "tag_id"
     t.index ["housing_id"], name: "index_transactions_on_housing_id"
+    t.index ["tag_id"], name: "index_transactions_on_tag_id"
     t.index ["user_id"], name: "index_transactions_on_user_id"
-  end
-
-  create_table "transactions_tags", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -129,5 +126,6 @@ ActiveRecord::Schema.define(version: 2022_03_22_155050) do
   add_foreign_key "housing_users", "users"
   add_foreign_key "housings", "users"
   add_foreign_key "transactions", "housings"
+  add_foreign_key "transactions", "tags"
   add_foreign_key "transactions", "users"
 end
