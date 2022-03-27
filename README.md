@@ -5,7 +5,7 @@ _Esta app, sirve para administrar, organizar, conocer y proyectar las finanzas d
 https://trello.com/b/6e3gEZ6x/chanchito-sano
 
 - Link al proyecto\
-http://chanchito-sano.com/
+https://chanchito-sano.com/
 
 ## Usabilidad 👾
 
