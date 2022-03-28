@@ -103,3 +103,7 @@ gem 'ransack'
 
 # paginación
 gem 'kaminari'
+
+# seguimiento de errores
+gem "sentry-ruby"
+gem "sentry-rails"

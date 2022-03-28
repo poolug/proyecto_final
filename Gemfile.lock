@@ -300,6 +300,14 @@ GEM
       rubyzip (>= 1.2.2)
     sendgrid-ruby (6.6.2)
       ruby_http_client (~> 3.4)
+    sentry-rails (5.2.1)
+      railties (>= 5.0)
+      sentry-ruby-core (~> 5.2.1)
+    sentry-ruby (5.2.1)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      sentry-ruby-core (= 5.2.1)
+    sentry-ruby-core (5.2.1)
+      concurrent-ruby
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -368,6 +376,8 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   selenium-webdriver
   sendgrid-ruby
+  sentry-rails
+  sentry-ruby
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
