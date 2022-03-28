@@ -10,7 +10,6 @@
   <hr>
   <div>
     <h2>Gastos en los últimos 12 meses</h2>
-    <%= @housing_id %>
     <%= column_chart @gastos_ultimos_meses_member, colors: ["#c53434"], prefix: "$", thousands: ",", empty: "No hay datos" %>
   </div>
 <div>

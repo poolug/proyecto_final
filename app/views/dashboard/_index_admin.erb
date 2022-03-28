@@ -12,17 +12,30 @@
     <h2> Resultado del mes: <b><%= l(@tiempo, locale: :es) %></b></h2>
     <%= column_chart [
       { name: "Ingresos",
-        data: Transaction.where(type_transaction: 0).group_by_month(:date_transaction, format: "%m-%Y").sum(:mount),
+        data: @ingresos_mes_actual,
         stack: "stack 1"
       },
       { name: "Gastos",
-        data: Transaction.where(type_transaction: 1).group_by_month(:date_transaction, format: "%m-%Y").sum(:mount),
+        data: @gastos_mes_actual,
         stack: "stack 2"
       },
       # { name: "Resultado",
       #   data: Transaction.where(type_transaction: 0).group_by_month(:date_transaction, format: "%m-%Y").sum(:mount),
       #   stack: "stack 3"
       # }
+    ],
+    colors: ["#109618", "#c53434", '#3086d6'], prefix: "$", thousands: ",", empty: "No hay datos", stacked: true %>
+    <hr>
+    <h2> Resultado de los últimos 12 meses</h2>
+    <%= column_chart [
+      { name: "Ingresos",
+        data: @ingresos_ultimos_meses,
+        stack: "stack 1"
+      },
+      { name: "Gastos",
+        data: @gastos_ultimos_meses,
+        stack: "stack 2"
+      }
     ],
     colors: ["#109618", "#c53434", '#3086d6'], prefix: "$", thousands: ",", empty: "No hay datos", stacked: true %>
   </div>
