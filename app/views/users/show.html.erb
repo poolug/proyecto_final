@@ -1,6 +1,6 @@
-<div id="form-edit-user"></div>
+<div id="form-edit-user" style="background-color: whitesmoke;"></div>
 
-<div id="profile">
+<div id="profile" style="background-color: whitesmoke;">
   <% if @user.avatar.attached? %>
     <li class="text-center"><%= image_tag @user.avatar, class: "img-avatar" %></li>
     <% else %>
@@ -14,7 +14,7 @@
   <li class="pb-1"> <b>Email:</b> <%= @user.email %></li>
   <li class="pb-1"> <b>Role:</b> <%= @user.role %> </li>
   <li class="pb-1"> <b>Evaluación:</b> <%= @user.rating %></li>
-  <span><%= link_to 'Editar', edit_user_path(@user), remote: true, class:"btn btn-warning" %></span>
+  <span><%= link_to 'Editar', edit_user_path(@user), remote: true, class:"btn btn-warning", style:"color: black !Important; border: 1px solid gray" %></span>
 </div>
 
 <hr>

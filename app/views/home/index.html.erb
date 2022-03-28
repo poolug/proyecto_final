@@ -1,11 +1,15 @@
 <% if user_signed_in? %>
-<div class="text-center">
+<div class="text-center mt-3">
   <% if @morning %>
     <h1>Hola! <%= @morning_say %>, <%= current_user.name %></h1>
     <% elsif @afternoon %>
       <h1>Hola! <%= @afternoon_say %>, <%= current_user.name %></h1>
     <% elsif @nigth %>
       <h1>Hola! <%= @nigth_say %>, <%= current_user.name %></h1>
+  <% end %>
+  <% if User.find(current_user.id).housings.count == 0 %>
+    <h3 class="mt-5">¿Que te parece si registras tu primera vivienda?</h3>
+    <%= link_to 'Crear vivienda', new_housing_path, class:"btn btn-success" %>
   <% end %>
 <div>
 <% else %>

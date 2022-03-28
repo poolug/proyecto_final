@@ -1,7 +1,7 @@
 class Transaction < ApplicationRecord
   belongs_to :user
   belongs_to :tag
-  has_many :housings
+  has_many :housings, dependent: :destroy
 
   enum type_transaction: %i[ Ingreso Gasto Gasto_Compartido ]
   

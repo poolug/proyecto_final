@@ -1,48 +1,50 @@
-<%= form_with(model: transaction, local: true) do |form| %>
-  <% if transaction.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+<div class="text-center align-center login">
+  <%= form_with(model: transaction, local: true) do |form| %>
+    <% if transaction.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
 
-      <ul>
-      <% transaction.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% transaction.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group mt-3">
+      <b><%= form.label :housing_id, "Vivienda" %></b>
+      <%= form.collection_select :housing_id, @housings_actives, :id, :name, {include_blank: true}, class: 'form-control' %>
+    </div>
+
+    <div class="form-group text-strong">
+      <b><%= form.label :type_transaction, "Tipo" %></b>
+      <%= form.select :type_transaction, @type_transactions, {include_blank: true}, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <b><%= form.label :tag_id, "¿Alguna clasificación?" %></b>
+      <%= form.collection_select :tag_id, Tag.all_tags, :id, :name, {include_blank: true}, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <b><%= form.label :description, "Descripción" %></b>
+      <%= form.text_field :description, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <b><%= form.label :mount, "Monto" %></b>
+      <%= form.number_field :mount, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <b><%= form.label :date_transaction, "Fecha" %></b>
+      <%= form.date_field :date_transaction, value: Time.now.strftime("%Y-%m-%d"), class: 'form-control' %>
+      <br>
+    </div>
+
+    <div class="actions mb-3">
+      <%= form.submit "Guardar", class: "btn btn-success" %> | <%= link_to 'Volver', transactions_path, class: "btn btn-info" %>
     </div>
   <% end %>
-
-  <div class="form-group">
-    <%= form.label :description, "Descripción" %>
-    <%= form.text_field :description, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :mount, "Monto" %>
-    <%= form.number_field :mount, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :date_transaction, "Fecha" %>
-    <%= form.date_field :date_transaction, value: Time.now.strftime("%Y-%m-%d"), class: 'form-control' %>
-    <br>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :type_transaction, "Tipo" %>
-    <%= form.select :type_transaction, @type_transactions, {include_blank: true}, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :housing_id, "Vivienda" %>
-    <%= form.collection_select :housing_id, @housings_actives, :id, :name, {include_blank: true}, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :tag_id, "Sub clasificación" %>
-    <%= form.collection_select :tag_id, Tag.all_tags, :id, :name, {include_blank: true}, class: 'form-control' %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Guardar", class: "btn btn-success" %> | <%= link_to 'Volver', transactions_path, class: "btn btn-info" %>
-  </div>
-<% end %>
+</div>

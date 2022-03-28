@@ -14,8 +14,11 @@ class HousingsController < ApplicationController
   end
 
   def housings_current_user_member
-    HousingUser.find_by(user_id: current_user.id).housing_id
-    # Housing.where(id: current_housing_admin).where(status: "Active").order(created_at: :asc)
+    if HousingUser.find_by(user_id: current_user.id).nil?
+      redirect_to root_path and return
+    else
+      HousingUser.find_by(user_id: current_user.id).housing_id
+    end
   end
 
   def housings_inactives

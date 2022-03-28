@@ -16,6 +16,7 @@
 
 body {
   margin: 0px !important;
+  background-color: lightgrey;
 }
 
 .nv-perfomance {
@@ -105,14 +106,21 @@ input {
   max-width: fit-content;
 }
 
-.login input.form-control {
+.login input.form-control, select {
   display: inline-block !important;
   border: 1px solid gray !important;
 }
 
+.header-transactions {
+  border: solid gray;
+  border-radius: 10px 10px;
+  padding: 7px;
+  background-color: lightsteelblue;
+}
+
+/* mobile */
 @media (max-width: 992px) {
 
-  /*Estilo y posición de los hr*/
   .btn-info {
     margin-top: 1em;
   }
@@ -130,7 +138,7 @@ input {
   }
 
   .item-navbar-mobile {
-    margin-top: 1em;
+    margin-bottom: 2em;
   }
 
   hr {
@@ -142,18 +150,21 @@ input {
   .login {
     border-radius: 9%;
     border: gray solid;
+    background-color: whitesmoke;
   }
 }
 
+/* desktop */
 @media (min-width: 991px) {
   .index-mobile {
     display: none;
   }
 
   .login {
-    border-radius: 5%;
+    border-radius: 20px 20px;
     border: gray solid;
     margin-right: 30%;
     margin-left: 30%;
+    background-color: whitesmoke;
   }
 }

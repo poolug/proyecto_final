@@ -14,7 +14,11 @@ class TransactionsController < ApplicationController
   end
 
   def housing_current_user_name
-    Housing.find(@current_housing_admin).name
+    if User.find(current_user.id).housings.count == 0
+      redirect_to root_path and return
+    else
+      Housing.find(@current_housing_admin).name
+    end
   end
 
   def members_housing_current
@@ -22,13 +26,11 @@ class TransactionsController < ApplicationController
   end
 
   def transactions_current_user_member
-    @current_housing_admin = HousingUser.find_by(user_id: current_user.id).housing_id
-    Transaction.where(housing_id: @current_housing_admin).where(type_transaction: "Gasto_Compartido").order(created_at: :asc)
+    unless User.find(current_user.id).housings.count == 0
+      @current_housing_admin = HousingUser.find_by(user_id: current_user.id).housing_id
+      Transaction.where(housing_id: @current_housing_admin).where(type_transaction: "Gasto_Compartido").order(created_at: :asc)
+    end
   end
-
-  # def transactions_current_user_admin
-  #   Transaction.includes(:user).where(user_id: current_user.id).order(created_at: :asc)
-  # end
 
   def housings_actives
     @housings_actives = Housing.includes(:housing_users).where({user_id: current_user.id}).where({status: "Active"})
