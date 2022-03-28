@@ -1,29 +1,31 @@
-<h1>Editando Vivienda: <%= @housing.name %></h1>
+<h1 class="text-center mb-3">Editando Vivienda: <%= @housing.name %></h1>
 
-<%= form_with(model: @housing, local: true) do |form| %>
-  <% if @housing.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@housing.errors.count, "error") %> prohibited this housing from being saved:</h2>
+<div class="text-center align-center login">
+  <%= form_with(model: @housing, local: true) do |form| %>
+    <% if @housing.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@housing.errors.count, "error") %> prohibited this housing from being saved:</h2>
 
-      <ul>
-      <% @housing.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @housing.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group mt-3">
+      <b><%= form.label :name, "Nombre" %></b>
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <b><%= form.label :status, "Estado" %></b>
+      <%= form.select :status, @statuses, {include_blank: true}, {class: 'form-control'} %>
+    </div>
+
+    <div class="actions mb-3">
+      <%= form.submit "Actualizar", class: "btn btn-success", data: { confirm: 'Confirmar edición' } %> | <%= link_to 'Volver', housings_path, class: "btn btn-info" %>
     </div>
   <% end %>
-
-  <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :status %>
-    <%= form.select :status, @statuses, include_blank: true %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Update", class: "btn btn-success", data: { confirm: 'Confirmar edición' } %> | <%= link_to 'Volver', housings_path, class: "btn btn-info" %>
-  </div>
-<% end %>
+</div>
