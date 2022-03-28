@@ -7,4 +7,7 @@ class Transaction < ApplicationRecord
   
   validates :description, :mount, :type_transaction, :housing_id, presence: true
 
+  # límites de registros a mostrar por página
+  paginates_per 20
+
 end

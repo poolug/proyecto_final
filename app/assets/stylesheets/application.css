@@ -123,6 +123,19 @@ input {
   border-radius: 15px 15px;
 }
 
+.pagination {
+  margin-top: 1em;
+  /* margin-left: 20%;
+  margin-right: 20%; */
+  width: fit-content;
+  background-color: steelblue;
+}
+
+.pagination span {
+  color: black !important;
+  padding: 1em;
+}
+
 /* mobile */
 @media (max-width: 992px) {
 

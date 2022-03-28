@@ -10,6 +10,8 @@
   <% end %>
 </div>
 
+<%= paginate @transactions_admin, window: 2 %>
+
 <%= link_to 'Nuevo movimiento', new_transaction_path, class:"btn btn-success mb-3 mt-3" %>
 
 <div class="wrap">

@@ -100,3 +100,6 @@ gem 'sendgrid-ruby'
 
 # formulario de búsquedas
 gem 'ransack'
+
+# paginación
+gem 'kaminari'
