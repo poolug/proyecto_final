@@ -1,7 +1,7 @@
-<% if current_user.Member? %>
-  <h5 class="header-transactions">Eres miembro de la vivienda: <%= @housing %></h5>
-  <%= render 'index_member', transaction: @transaction %>
-  <% else %>
+<% if current_user.Admin? %>
   <h5 class="header-transactions">Eres administrador de la vivienda: <%= @housing %></h5>
   <%= render 'index_admin', transaction: @transaction %>
+  <% else %>
+  <h5 class="header-transactions">Estas viendo los gastos compartidos de la vivienda: <%= @housing %></h5>
+  <%= render 'index_member', transaction: @transaction %>
 <% end %>

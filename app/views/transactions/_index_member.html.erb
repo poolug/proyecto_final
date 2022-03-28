@@ -28,7 +28,7 @@
             <% end %>
           </td>
           <td class="text-center">
-            <%= transaction.housing_id %>
+            <%= Housing.find(transaction.housing_id).name %>
           </td>
         </tr>
       <% end %>

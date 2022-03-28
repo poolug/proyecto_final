@@ -1,0 +1,37 @@
+<div>
+  <div>
+    <h2>Mis ingresos en el mes <b><%= l(@tiempo, locale: :es) %></b></h2>
+    <%= column_chart @ingresos_mes_actual, colors: ["#109618"], label: "Monto", prefix: "$", thousands: ",", empty: "No hay datos" %>
+    <hr>
+    <h2>Mis gastos en el mes <b><%= l(@tiempo, locale: :es) %></b></h2>
+    <%= column_chart @gastos_mes_actual, colors: ["#c53434"], label: "Monto", prefix: "$", thousands: ",", empty: "No hay datos" %>
+    <hr>
+    <h4>Gastos según tipo de clasificación</h4>
+    <%= pie_chart @tipos_gastos_mes_actual, label: "Monto", donut: true, prefix: "$", thousands: ",", empty: "No hay datos" %>
+    <hr>
+    <h2> Resultado del mes: <b><%= l(@tiempo, locale: :es) %></b></h2>
+    <%= column_chart [
+      { name: "Ingresos",
+        data: Transaction.where(type_transaction: 0).group_by_month(:date_transaction, format: "%m-%Y").sum(:mount),
+        stack: "stack 1"
+      },
+      { name: "Gastos",
+        data: Transaction.where(type_transaction: 1).group_by_month(:date_transaction, format: "%m-%Y").sum(:mount),
+        stack: "stack 2"
+      },
+      # { name: "Resultado",
+      #   data: Transaction.where(type_transaction: 0).group_by_month(:date_transaction, format: "%m-%Y").sum(:mount),
+      #   stack: "stack 3"
+      # }
+    ],
+    colors: ["#109618", "#c53434", '#3086d6'], prefix: "$", thousands: ",", empty: "No hay datos", stacked: true %>
+  </div>
+  <hr>
+  <div>
+    <h2>Mis ingresos en los últimos 12 meses</h2>
+    <%= column_chart @ingresos_ultimos_meses, colors: ["#109618"], label: "Monto", prefix: "$", thousands: ",", empty: "No hay datos" %>
+    <hr>
+    <h2>Mis gastos en los últimos 12 meses</h2>
+    <%= column_chart @gastos_ultimos_meses, colors: ["#c53434"], label: "Monto", prefix: "$", thousands: ",", empty: "No hay datos" %>
+  </div>
+<div>

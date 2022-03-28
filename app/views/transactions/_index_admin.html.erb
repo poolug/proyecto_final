@@ -1,6 +1,6 @@
 <h1>Movimientos</h1>
 
-<div style="border: solid gray; border-radius: 20px 20px; padding: 1em">
+<div style="border: solid gray; border-radius: 20px 20px; padding: 1em; background-color: white">
   <%= search_form_for @q do |f|%>
     <div class="form-group form-inline mb-0">
       <%= f.select :type_transaction_eq, options_for_select(Transaction.type_transactions, @q.type_transaction_eq), {include_blank: true}, {class: 'form-control mx-2'} %>
