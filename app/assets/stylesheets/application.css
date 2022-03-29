@@ -161,6 +161,17 @@ input {
   border-radius: 0px 0px 15px 15px;
 }
 
+.btn-warning {
+  background-color: #ffc107 !important;
+}
+
+.btn-danger {
+  background-color: #dc3545 !important;
+}
+
+.btn-success {
+  background-color: #28a745 !important;
+}
 /* ajusta erros en los form */
 .field_with_errors {
   display: block !important;

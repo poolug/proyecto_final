@@ -10,12 +10,12 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="index-tags">
     <% @tags.each do |tag| %>
       <tr>
         <td><%= tag.name %></td>
         <td><%= link_to 'Editar', edit_tag_path(tag), class: "btn btn-warning" %></td>
-        <td><%= link_to 'Eliminar', tag, method: :delete, data: { confirm: 'Está seguro?' }, class: "btn btn-danger" %></td>
+        <td><%= link_to 'Eliminar', tag, method: :delete, data: { confirm: 'Está seguro?' }, class: "btn btn-danger", remote: true %></td>
       </tr>
     <% end %>
   </tbody>

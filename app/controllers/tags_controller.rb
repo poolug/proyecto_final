@@ -50,12 +50,18 @@ class TagsController < ApplicationController
 
   # DELETE /tags/1 or /tags/1.json
   def destroy
-    @tag.destroy
 
-    respond_to do |format|
-      format.html { redirect_to tags_url, notice: "Tag was successfully destroyed." }
-      format.json { head :no_content }
+    if Transaction.find_by(tag_id: params[:id]).nil?
+      @tag.destroy
+      respond_to do |format|
+        format.html { redirect_to tags_url, notice: "Clasificación eliminada!." }
+        format.json { head :no_content }
+      end
+    else
+      @notice = "La clasificación, ya pertenece a un movimiento"
+      render "error_destroy_tag.js.erb"
     end
+
   end
 
   private
