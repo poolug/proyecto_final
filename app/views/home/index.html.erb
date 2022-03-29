@@ -23,13 +23,21 @@
 </div>
 
 <div class="text-center mt-5">
-  <h1 class="display-3 font-weight-bold my-4">¡Bienvenido a Chanchito Sano!</h1>
+  <h1 class="display-4 font-weight-bold my-4">¡Bienvenido a Chanchito Sano!</h1>
   <h6>Tener cuentas claras contigo mismo, nunca ha sido más sano.</h6>
   <%= image_tag 'chanchito.png', class: "img-fluid", alt: "logo-index", style: "max-width: 50%" %>
 </div>
-<hr>
+<hr id="section-1">
+<section id="que-es" class="container text-center my-5" style="background-color: white">
+  <h2 class="display-4 font-weight-bold my-4">¿Qué es Chanchito Sano?</h2>
+  <h5 class="my-4">Chanchito Sano llegó para ayudar a organizar tus gastos diarios, de tu vivienda, emprendimiento o lo que necesites organizar financieramente..</h5>
 
-<section id="como-funciona" class="container text-center my-5" style="background-color: white">
+  <div style="font-size: large">
+    <p> A través de tu chanchito, también podrás visualizar tus proyecciones de gastos, lo que te permitirá planificiar esa compra, inversión o gasto que necesites realizar, cuidándote a que no te vayas a generar un desajuste económico en un plazo determinado.</p>
+  </div>
+</section>
+<hr id="section-2">
+<section id="como-funciona" class="container text-center my-5" style="background-color: white; padding-botton: 1em;">
   <h2 class="display-4 font-weight-bold my-4">¿Cómo funciona?</h2>
   <h5 class="my-4">En 3 sensillos pasos puedes comenzar a ver un panoráma de tus finanzas personales..</h5>
   <div class="row">
@@ -38,10 +46,10 @@
       <h3 class="my-3">1. Regístrate</h3>
       <p class="my-3">Crea una vivienda y comienza a registrar tus gastos personales. Puedes escoger entre <b>Ingreso, Gasto o Gasto Compartido</b>.</p>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 mb-5">
       <%= render 'invite' %>
       <h3 class="my-3">2. Invita a tus amigos, familiares </h3>
-      <p class="my-3">¿Vives acompañado?, ¿comparten gastos?, puedes registrar todos los  transaparentar</p>
+      <p class="my-3">¿Vives acompañado?, ¿comparten gastos?, puedes registrar todos los movimientos que compartes con tus acompañantes e invitarlos a la plataforma, donde podrán consultar el historial de sus aportes.</p>
     </div>
     <div class="col-md-4">
       <i class="far fa-map fa-3x my-3"></i>
@@ -52,13 +60,6 @@
   </div>
 </section>
 
-<section id="acerca" style="background-color: white">
-  <h5 class="my-4">Chanchito Sano llegó para ayudarte en tus gastos diarios, de tu vivienda, emprendimiento o lo que necesites organizar..</h5>
+<div style="padding-bottom: 1em; text-align: end; font-size: 5em;"><a style="background-color: transparent; text-decoration: none" href="#inicio">🔝</a></div>
 
-  <div style="font-size: large">
-    <p>
-      A través de tu chanchito, también podrás visualizar tus proyecciones de gastos, lo que te permitirá planificiar esa compra, inversión o gasto que necesites realizar, validando que no te vaya a generar un desajuste económico a corto o mediano plazo.
-    </p>
-  </div>
-</section>
 <% end %>

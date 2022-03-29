@@ -1,10 +1,11 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between nv-perfomance">
+<nav id="inicio" class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between nv-perfomance">
   <% if user_signed_in? %>
     <%= link_to transactions_path, class:"navbar-brand" do %>
       <%= image_tag "chanchito.png", size: "40x40" %>
     <% end %>
   <% else %>
-    <%= link_to "Inicio", root_path, class:"navbar-brand" %>
+    <a class="navbar-brand" href="#section-1" style="">¿Que és?</a>
+    <a class="navbar-brand" href="#como-funciona">¿Cómo funciona?</a>
   <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

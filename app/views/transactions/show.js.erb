@@ -1,0 +1,5 @@
+swal({
+  title: '<%= @transaction.description %>',
+  text: 'Monto: <%= number_to_currency(@transaction.mount, precision: 0) %> \n Fecha del movimiento: <%= @transaction.date_transaction %> \n Tipo: <%= @transaction.type_transaction %>',
+  icon: 'info',
+});

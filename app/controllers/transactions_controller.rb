@@ -37,6 +37,7 @@ class TransactionsController < ApplicationController
   end
   # GET /transactions/1 or /transactions/1.json
   def show
+    render "show.js.erb"
   end
 
   # GET /transactions/new

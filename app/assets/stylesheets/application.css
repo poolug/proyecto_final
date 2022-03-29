@@ -24,6 +24,10 @@ body {
   border-radius: 0px 0px 15px 15px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 nav a, nav span {
   color: white !important;
   text-decoration: none !important;
@@ -37,6 +41,10 @@ nav .btn-success {
 
 body a {
   color: white !important;
+}
+
+body td a {
+  background-color: transparent !important;
 }
 
 nav .btn-danger {
@@ -141,9 +149,16 @@ input {
   height: 50%;
 }
 
-#como-funciona .pig {
-  /* width: 10px !important; */
-  height: 40px;
+#como-funciona, #que-es {
+  box-shadow: 11px 10px 18px -2px black;
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding-bottom: 1.5em;
+}
+
+#como-funciona svg {
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+  border-radius: 0px 0px 15px 15px;
 }
 
 /* mobile */
