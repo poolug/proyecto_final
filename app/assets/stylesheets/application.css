@@ -136,6 +136,16 @@ input {
   padding: 1em;
 }
 
+#como-funciona svg {
+  width: 50%;
+  height: 50%;
+}
+
+#como-funciona .pig {
+  /* width: 10px !important; */
+  height: 40px;
+}
+
 /* mobile */
 @media (max-width: 992px) {
 
