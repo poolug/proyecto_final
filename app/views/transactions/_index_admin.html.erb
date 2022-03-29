@@ -3,8 +3,14 @@
 <div style="border: solid gray; border-radius: 20px 20px; padding: 1em; background-color: white">
   <%= search_form_for @q do |f|%>
     <div class="form-group form-inline mb-0">
-      <%= f.select :type_transaction_eq, options_for_select(Transaction.type_transactions, @q.type_transaction_eq), {include_blank: true}, {class: 'form-control mx-2'} %>
+      <%= f.select :type_transaction_eq, options_for_select(Transaction.type_transactions, @q.type_transaction_eq), {include_blank: "Todos"}, {class: 'form-control mx-2'} %>
       <%= f.submit 'Filtrar', class: 'btn btn-primary' %>
+
+      <%= search_form_for @q do |f|%>
+        <%= f.label :description_cont, "." %>
+        <%= f.search_field :description_cont, placeholder: "Descripción", class: 'form-control mx-2', style:"border: 1px solid gray" %>
+        <%= f.submit 'Buscar', class: 'btn btn-primary' %>
+      <% end %>
       <span class="ml-5"><%= link_to 'Ver clasificaciones', tags_path, class: "btn btn-info" %></span>
     </div>
   <% end %>
@@ -18,9 +24,9 @@
   <table class="table table-striped">
     <thead class="thead-light">
       <tr class="text-center">
-        <th>Fecha</th>
+        <th class="short-link-index"><%= sort_link(@q, :date_transaction, "Fecha") %></th>
         <th>Descripción</th>
-        <th class="text-right">Ingreso</th>
+        <th class="text-right short-link-index"><%= sort_link(@q, :mount, "Ingreso") %></th>
         <th class="text-right">Gasto</th>
         <th class="text-right">Clasificación</th>
         <th class="text-center">Vivienda</th>

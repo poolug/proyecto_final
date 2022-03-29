@@ -179,6 +179,11 @@ input {
   margin-right: 20%;
 }
 
+.short-link-index a {
+  color: black !important;
+  background-color: transparent;
+}
+
 /* mobile */
 @media (max-width: 992px) {
 
