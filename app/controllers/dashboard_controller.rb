@@ -26,7 +26,7 @@ class DashboardController < ApplicationController
       redirect_to root_path
     else
       # gastos_compartidos mes actual, member
-      @gastos_mes_actual = Transaction.group_by_month(:date_transaction, format: "%m-%Y").where('EXTRACT(MONTH FROM date_transaction) = ? ', mes_actual).where('type_transaction = ? ', @gasto_compartido).where(housing_id: @housing.id).sum(:mount)
+      @gastos_mes_actual_member = Transaction.group_by_month(:date_transaction, format: "%m-%Y").where('EXTRACT(MONTH FROM date_transaction) = ? ', mes_actual).where('type_transaction = ? ', @gasto_compartido).where(housing_id: @housing.id).sum(:mount)
 
       # gastos_compartidos Ult 12 meses, member
       @gastos_ultimos_meses_member = Transaction.group_by_month(:date_transaction, format: "%m-%Y").where('EXTRACT(MONTH FROM date_transaction) < ? ', 12.month).where(housing_id: @housing.id).where('type_transaction = ? ', @gasto_compartido).sum(:mount)

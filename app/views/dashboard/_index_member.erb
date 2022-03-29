@@ -5,7 +5,7 @@
 
   <div>
     <h2>Gastos en el mes <b><%= l(@tiempo, locale: :es) %></b></h2>
-    <%= column_chart @gastos_mes_actual, colors: ["#c53434"], prefix: "$", thousands: ",", empty: "No hay datos" %>
+    <%= column_chart @gastos_mes_actual_member, colors: ["#c53434"], prefix: "$", thousands: ",", empty: "No hay datos" %>
   </div>
   <hr>
   <div>
