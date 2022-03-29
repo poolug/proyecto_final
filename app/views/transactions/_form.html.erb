@@ -1,13 +1,24 @@
 <div class="text-center align-center login">
   <%= form_with(model: transaction, local: true) do |form| %>
-    <% if transaction.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
 
+    <% if transaction.errors.any? %>
+      <div id="" class="alert alert-danger alert-dismissable pt-1">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h2 > oh! oh! no se pudo crear el movimiento 🙁</h2>
         <ul>
-        <% transaction.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
+          <% transaction.errors.full_messages.each do |message| %>
+            <% if message == "Description can't be blank" %>
+              <li><%= "Debes ingresar una descripción." %></li>
+              <% elsif message == "Mount can't be blank" %>
+              <li><%= "Debes ingresar un monto." %></li>
+              <% elsif message == "Type transaction can't be blank" %>
+              <li><%= "Debes escoger un tipo de movimiento." %></li>
+              <% elsif message == "Housing can't be blank" %>
+              <li><%= "Debes escoger una vivienda." %></li>
+            <% else %>
+              <li><%= message %></li>
+            <% end %>
+          <% end %>
         </ul>
       </div>
     <% end %>
@@ -24,7 +35,8 @@
 
     <div class="form-group">
       <b><%= form.label :tag_id, "¿Alguna clasificación?" %></b>
-      <%= form.collection_select :tag_id, Tag.all_tags, :id, :name, {include_blank: true}, class: 'form-control' %>
+      <%= form.collection_select :tag_id, Tag.all_tags, :id, :name, {include_blank: true}, class: 'form-control' %><br>
+      <em>Ej: supermercado, agua, sueldo</em>
     </div>
 
     <div class="form-group">

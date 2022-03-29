@@ -161,6 +161,13 @@ input {
   border-radius: 0px 0px 15px 15px;
 }
 
+/* ajusta erros en los form */
+.field_with_errors {
+  display: block !important;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
 /* mobile */
 @media (max-width: 992px) {
 

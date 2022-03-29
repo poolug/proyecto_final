@@ -48,7 +48,11 @@
             <% end %>
           </td>
           <td class="text-right">
+          <% if transaction.tag_id == nil %>
+            -
+            <% else %>
             <%= Tag.find(transaction.tag_id).name %>
+          <% end %>
           </td>
           <td class="text-center">
             <%= Housing.find(transaction.housing_id).name %>
