@@ -13,6 +13,16 @@ class UsersController < ApplicationController
   def show
     self.housings_actives
     self.housings_inactives
+    @housings_actives_member = Housing.members_on_housing.where(id: housings_current_user_member)
+    @housings_inactives_member = Housing.members_on_housing_inactive.where(id: housings_current_user_member)
+  end
+
+  def housings_current_user_member
+    if HousingUser.find_by(user_id: current_user.id).nil?
+      redirect_to root_path and return
+    else
+      HousingUser.find_by(user_id: current_user.id).housing_id
+    end
   end
 
   def housings_actives

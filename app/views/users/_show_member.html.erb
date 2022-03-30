@@ -1,0 +1,79 @@
+<div id="form-edit-user" style="background-color: whitesmoke;"></div>
+
+<div id="profile" style="background-color: whitesmoke;">
+  <% if @user.avatar.attached? %>
+    <li class="text-center"><%= image_tag @user.avatar, class: "img-avatar" %></li>
+    <% else %>
+    <% if @user.image? %>
+      <li class="text-center"><%= image_tag @user.image, class: "img-avatar" %></li>
+      <% else %>
+      <li class="text-center"><%= image_tag 'user.png', class: "img-avatar" %></li>
+    <% end %>
+  <% end %>
+  <li id="user-<%= @user.id %>" class="pt-3 pb-1"> <b>Nombre:</b> <%= @user.name %></li>
+  <li class="pb-1"> <b>Email:</b> <%= @user.email %></li>
+  <li class="pb-1"> <b>Role:</b> <%= @user.role %> </li>
+  <li class="pb-1"> <b>Evaluación:</b> <%= @user.rating %></li>
+  <span><%= link_to 'Editar', edit_user_path(@user), remote: true, class:"btn btn-warning", style:"color: black !Important; border: 1px solid gray" %></span>
+</div>
+
+<hr>
+
+<h3>Viviendas Activas</h3>
+<div class="wrap">
+  <table class="table table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th>Nombre</th>
+        <th>Miembros</th>
+        <th>Fecha creación</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @housings_actives_member.each do |housing| %>
+      <tr>
+        <td class="align-middle"> <%= housing.name %> </td>
+        <td>
+          <% housing.users.each_with_index do |user_id, index| %>
+            <li>
+              <%= "Usuario #{index + 1}: #{user_id.email}" %>  <%= link_to 'Evaluar', rating_member_path(user_id.id), method: :get, remote: true, class:"btn btn-success mb-1", id:"button-rating-#{user_id.id}" if user_id.email != current_user.email %>
+              <div id="form-rating-<%= user_id.id %>" ></div>
+            </li>
+          <% end %>
+        </td>
+        <td class="align-middle"><%= housing.created_at.strftime("%d-%m-%Y %H:%M") %></td>
+      </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+</div>
+
+<h3 class="mt-5">Viviendas Inactivas</h3>
+<div class="wrap">
+  <table class="table table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th>Nombre</th>
+        <th>Miembros</th>
+        <th>Fecha inactiva</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @housings_inactives_member.each do |housing| %>
+        <tr>
+          <td class="align-middle"> <%= housing.name %> </td>
+          <td>
+          <% housing.users.each_with_index do |user_id, index| %>
+            <li> <%= "Usuario #{index + 1}: #{user_id.email}" %> </li>
+          <% end %>
+          </td>
+          <td class="align-middle"> <%= housing.inactive_at.strftime("%d-%m-%Y %H:%M") %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+</div>
