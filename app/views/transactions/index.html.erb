@@ -1,7 +1,15 @@
 <% if current_user.Admin? %>
-  <h5 class="header-transactions">Eres administrador de la vivienda: <%= @housing %></h5>
+  <h5 class="header-transactions">Eres administrador de las viviendas:
+  <% @housings.each do |h| %>
+    <li><%= h.name %></li>
+  <% end %>
+  </h5>
   <%= render 'index_admin', transaction: @transaction %>
   <% else %>
-  <h5 class="header-transactions">Estas viendo los gastos compartidos de la vivienda: <%= @housing %></h5>
+  <h5 class="header-transactions">Estas viendo los gastos compartidos de las viviendas:
+    <% @housings_member.each do |h| %>
+    <li><%= h.name %></li>
+  <% end %>
+  </h5>
   <%= render 'index_member', transaction: @transaction %>
 <% end %>

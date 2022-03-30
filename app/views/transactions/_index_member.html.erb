@@ -28,7 +28,7 @@
             <% end %>
           </td>
           <td class="text-center">
-            <%= Housing.find(transaction.housing_id).name %>
+            <%= Housing.find(transaction.housing_id).name %> <%= "- (Inactiva)" if Housing.find(transaction.housing_id).Inactive? %>
           </td>
         </tr>
       <% end %>

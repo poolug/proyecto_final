@@ -2,7 +2,7 @@
   <%= form_with(model: transaction, local: true) do |form| %>
 
     <% if transaction.errors.any? %>
-      <div id="" class="alert alert-danger alert-dismissable pt-1">
+      <div id="alert" class="alert alert-danger alert-dismissable pt-1">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h2 > oh! oh! no se pudo crear el movimiento 🙁</h2>
         <ul>

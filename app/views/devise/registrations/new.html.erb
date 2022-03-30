@@ -1,7 +1,7 @@
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div class="login text-center pt-2">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="login text-center pt-2">
     <h2>Registrarse</h2>
 
     <div class="form-group">
@@ -35,10 +35,11 @@
     <div class="actions">
       <%= f.submit "Registrar", class: "btn btn-success", style:"border: 1px solid black" %>
     </div>
+  <% end %>
 
-  </div>
-<% end %>
   <div class="text-center pt-5">
     <h6>¿Ya tienes una cuenta?</h6><%= link_to 'Inicia sesión', new_user_session_path, class: "btn btn-primary", style:"border: 1px solid black" %>
   </div>
+
+</div>
 <%#= render "devise/shared/links" %>

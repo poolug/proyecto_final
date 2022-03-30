@@ -6,18 +6,22 @@ class TransactionsController < ApplicationController
   # GET /transactions or /transactions.json
   def index
     @transactions_member = transactions_current_user_member
-    @housing = housing_current_user_name
+    @housings = housing_current_user
+    @housings_member = housing_current_user
     @members_current_housing = members_housing_current
 
     @q = Transaction.ransack(params[:q])
     @transactions_admin = @q.result.includes(:user).where(user_id: current_user.id).order(created_at: :asc).page params[:page]
   end
 
-  def housing_current_user_name
+  def housing_current_user
     if User.find(current_user.id).housings.count == 0
       redirect_to root_path and return
+    elsif current_user.Member?
+      housing = HousingUser.find_by(user_id: current_user.id).housing_id
+      @housings_member = Housing.members_on_housing.where(id: housing)
     else
-      Housing.find(@current_housing_admin).name
+      Housing.members_on_housing.where(user_id: current_user.id)
     end
   end
 
