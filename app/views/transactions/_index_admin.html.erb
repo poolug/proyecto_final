@@ -1,6 +1,6 @@
 <h1>Movimientos</h1>
 
-<div style="border: solid gray; border-radius: 20px 20px; padding: 1em; background-color: white">
+<div class="filters-mobile" style="border: solid gray; border-radius: 20px 20px; padding: 1em; background-color: white">
   <%= search_form_for @q do |f|%>
     <div class="form-group form-inline mb-0">
       <%# # búsqueda por tipo de transacción %>
@@ -9,8 +9,8 @@
       <%= f.submit 'Filtrar', class: 'btn btn-primary mr-4' %>
 
       <%= f.label :tag_id_eq, "Clasificación" %>
-      <%= f.select :tag_id_eq, options_from_collection_for_select(Tag.joins(:transactions).where.not(id: Transaction.find_by(tag_id: nil)).order(name: :asc).group(:id), :id, :name, @q.tag_id_eq),{include_blank: "Todos"}, {class: 'form-control mx-2'} %>
-      <%= f.submit 'Filtrar', class: 'btn btn-primary mr-4' %>
+      <span class="collection-for-select"><%= f.select :tag_id_eq, options_from_collection_for_select(Tag.joins(:transactions).where.not(id: Transaction.find_by(tag_id: nil)).order(name: :asc).group(:id), :id, :name, @q.tag_id_eq),{include_blank: "Todos"}, {class: 'form-control mx-2'} %>
+      <%= f.submit 'Filtrar', class: 'btn btn-primary mr-4' %></span>
 
       <%# búsqueda por descripción %>
       <%= f.label :description_cont, "Descripción" %>
@@ -39,7 +39,7 @@
 
 <%= link_to 'Nuevo movimiento', new_transaction_path, class:"btn btn-success mb-3 mt-3" %>
 
-<span style="margin-left: auto;"><%= link_to 'Ver clasificaciones', tags_path, class: "btn btn-info" %></span>
+<span><%= link_to 'Ver clasificaciones', tags_path, class: "btn btn-info" %></span>
 
 <div class="wrap table-responsive">
   <table class="table table-striped">
@@ -63,7 +63,7 @@
       </tr>
     </thead>
 
-    <tbody>
+    <tbody style="background-color: aliceblue">
       <% @transactions_admin.each do |transaction| %>
         <tr>
           <td class="align-middle"><%= transaction.date_transaction.strftime("%d-%m-%Y") %></td>

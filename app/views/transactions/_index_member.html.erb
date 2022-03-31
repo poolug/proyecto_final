@@ -12,7 +12,7 @@
       </tr>
     </thead>
 
-    <tbody>
+    <tbody style="background-color: aliceblue">
       <% @transactions_member.each do |transaction| %>
         <tr>
           <td class="align-middle"><%= transaction.date_transaction.strftime("%d-%m-%Y") %></td>

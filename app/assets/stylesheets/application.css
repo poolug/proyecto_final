@@ -107,7 +107,7 @@ img.img-avatar {
 }
 
 select {
-  max-width: fit-content;
+  max-width: 140px;
 }
 
 input {
@@ -189,6 +189,11 @@ input {
 
   .btn-info {
     margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  .filters-mobile {
+    
   }
 
   .index-mobile {
@@ -224,6 +229,10 @@ input {
 @media (min-width: 991px) {
   .index-mobile {
     display: none;
+  }
+
+  .btn-info {
+    margin-bottom: 0em;
   }
 
   .login {
