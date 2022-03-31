@@ -11,7 +11,7 @@ class TransactionsController < ApplicationController
     @members_current_housing = members_housing_current
 
     @q = Transaction.ransack(params[:q])
-    @transactions_admin = @q.result.includes(:user).where(user_id: current_user.id).order(created_at: :asc).page params[:page]
+    @transactions_admin = @q.result.includes(:user).where(user_id: current_user.id).order(date_transaction: :asc).page params[:page]
   end
 
   def housing_current_user

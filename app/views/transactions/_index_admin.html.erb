@@ -3,16 +3,34 @@
 <div style="border: solid gray; border-radius: 20px 20px; padding: 1em; background-color: white">
   <%= search_form_for @q do |f|%>
     <div class="form-group form-inline mb-0">
-
       <%# # búsqueda por tipo de transacción %>
+      <%= f.label :type_transaction_eq, "Tipo" %>
       <%= f.select :type_transaction_eq, options_for_select(Transaction.type_transactions, @q.type_transaction_eq), {include_blank: "Todos"}, {class: 'form-control mx-2'} %>
-      <%= f.submit 'Filtrar', class: 'btn btn-primary' %>
+      <%= f.submit 'Filtrar', class: 'btn btn-primary mr-4' %>
+
+      <%= f.label :tag_id_eq, "Clasificación" %>
+      <%= f.select :tag_id_eq, options_from_collection_for_select(Tag.joins(:transactions).where.not(id: Transaction.find_by(tag_id: nil)).order(name: :asc).group(:id), :id, :name, @q.tag_id_eq),{include_blank: "Todos"}, {class: 'form-control mx-2'} %>
+      <%= f.submit 'Filtrar', class: 'btn btn-primary mr-4' %>
 
       <%# búsqueda por descripción %>
-      <%= f.label :description_cont, "." %>
+      <%= f.label :description_cont, "Descripción" %>
       <%= f.search_field :description_cont, placeholder: "Descripción", class: 'form-control mx-2', style:"border: 1px solid gray" %>
       <%= f.submit 'Buscar', class: 'btn btn-primary' %>
-      <span class="ml-5"><%= link_to 'Ver clasificaciones', tags_path, class: "btn btn-info" %></span>
+
+      <%# búsqueda por fecha %>
+      <%#= f.date_field :date_transaction_date_equals, value: Time.now.strftime("%Y-%m-%d"), class: 'form-control mx-2', style:"border: 1px solid gray" %>
+      <%#= f.submit 'Buscar', class: 'btn btn-primary' %>
+    </div>
+    <hr>
+    <div class="form-group form-inline">
+      <%= f.label :date_transaction_gteq, "Desde" %>
+      <%= f.date_field :date_transaction_gteq, class: 'form-control mx-2', style:"border: 1px solid gray" %>
+
+      <%= f.label :date_transaction_gteq, "Hasta" %>
+      <%= f.date_field :date_transaction_lteq, class: 'form-control mx-2', style:"border: 1px solid gray" %>
+      <%= f.submit 'Filtrar', class: 'btn btn-primary' %>
+
+      <%= link_to 'Limpiar', transactions_path, class: 'btn btn-warning text-center', style:"color: black !important; border: 1px solid; margin-left: auto;" %>
     </div>
   <% end %>
 </div>
@@ -21,13 +39,23 @@
 
 <%= link_to 'Nuevo movimiento', new_transaction_path, class:"btn btn-success mb-3 mt-3" %>
 
+<span class="ml-5"><%= link_to 'Ver clasificaciones', tags_path, class: "btn btn-info" %></span>
+
 <div class="wrap">
   <table class="table table-striped">
     <thead class="thead-light">
       <tr class="text-center">
-        <th class="short-link-index"><%= sort_link(@q, :date_transaction, "Fecha") %></th>
+        <th class="short-link-index">
+          <%= sort_link(@q, :date_transaction) do %>
+            <strong style="text-decoration: underline">Fecha</strong>
+          <% end %>
+        </th>
         <th>Descripción</th>
-        <th class="text-right short-link-index"><%= sort_link(@q, :mount, "Ingreso") %></th>
+        <th class="text-right short-link-index">
+          <%= sort_link(@q, :mount) do %>
+            <strong style="text-decoration: underline">Ingreso</strong>
+          <% end %>
+        </th>
         <th class="text-right">Gasto</th>
         <th class="text-right">Clasificación</th>
         <th class="text-center">Vivienda</th>
