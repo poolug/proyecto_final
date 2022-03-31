@@ -7,6 +7,7 @@
     <% elsif @nigth %>
       <h1>Hola! <%= @nigth_say %>, <%= current_user.name %></h1>
   <% end %>
+
   <% if User.find(current_user.id).housings.count == 0 %>
     <h3 class="mt-5">¿Que te parece si registras tu primera vivienda?</h3>
     <%= link_to 'Crear vivienda', new_housing_path, class:"btn btn-success" %>
@@ -61,5 +62,7 @@
 </section>
 
 <div style="padding-bottom: 1em; text-align: end; font-size: 5em;"><a style="background-color: transparent; text-decoration: none" href="#inicio">🔝</a></div>
+
+<div class="pt-5" data-tf-widget="mqv9IAOs" data-tf-iframe-props="title=Chanchito Sano" data-tf-medium="snippet" style="width:100%;height:430px;"></div><script src="//embed.typeform.com/next/embed.js"></script>
 
 <% end %>

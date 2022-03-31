@@ -4,8 +4,13 @@
       <%= image_tag "chanchito.png", size: "40x40" %>
     <% end %>
   <% else %>
-    <a class="navbar-brand" href="#section-1" style="">¿Que és?</a>
-    <a class="navbar-brand" href="#section-2">¿Cómo funciona?</a>
+    <% if Rails.env.development? %>
+      <a class="navbar-brand" href="/#section-1">¿Que és?</a>
+      <a class="navbar-brand" href="/#section-2">¿Cómo funciona?</a>
+    <% else %>
+      <a class="navbar-brand" href="https://chanchito-sano.com/#section-1">¿Que és?</a>
+      <a class="navbar-brand" href="https://chanchito-sano.com/#section-2">¿Cómo funciona?</a>
+    <% end %>
   <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

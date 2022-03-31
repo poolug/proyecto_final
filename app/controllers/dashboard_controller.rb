@@ -7,6 +7,10 @@ class DashboardController < ApplicationController
     type_transactions
     @housing = transactions_current_user_admin
 
+    @ingresos = Transaction.where('EXTRACT(MONTH FROM date_transaction) = ? ', mes_actual).where('type_transaction = ? ', 0).where(user_id: current_user.id).sum(:mount)
+
+    @gastos = Transaction.where('EXTRACT(MONTH FROM date_transaction) = ? ', mes_actual).where('type_transaction = ? ', 1).where(user_id: current_user.id).sum(:mount)
+
     # ingresos, admin
     @ingresos_mes_actual = Transaction.group_by_month(:date_transaction, format: "%m-%Y").where('EXTRACT(MONTH FROM date_transaction) = ? ', mes_actual).where('type_transaction = ? ', @ingreso).where(user_id: current_user.id).sum(:mount)
 
