@@ -36,6 +36,20 @@ class DashboardController < ApplicationController
       @gastos_ultimos_meses_member = Transaction.group_by_month(:date_transaction, format: "%m-%Y", time_zone: false).where('EXTRACT(MONTH FROM date_transaction) < ? ', 12.month).where(housing_id: @housing.id).where('type_transaction = ? ', @gasto_compartido).sum(:mount)
     end
 
+    respond_to do |format|
+      format.html
+      sleep 10
+      format.pdf {
+        render pdf: 'reporte', # nombre del archivo a generar
+        template: 'dashboard/index.html.erb', # plantilla a renderizar
+        layout: 'pdf.html',
+        orientation: "Landscape",
+        page_size: "A4",
+        encoding: "UTF-8"
+        # disposition: "attachment" # descargar
+      }
+    end
+
   end
 
   def type_transactions

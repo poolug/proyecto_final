@@ -107,3 +107,7 @@ gem 'kaminari'
 # seguimiento de errores
 gem "sentry-ruby"
 gem "sentry-rails"
+
+# generar pdf's
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
