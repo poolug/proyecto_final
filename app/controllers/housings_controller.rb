@@ -101,7 +101,7 @@ class HousingsController < ApplicationController
   # PATCH/PUT /housings/1 or /housings/1.json
   def update
     housing = params[:status]
-    if housing = "Inactive"
+    if housing == "Inactive"
       @housing.update(inactive_at: Time.now)
     end
 
