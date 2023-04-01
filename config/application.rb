@@ -13,7 +13,7 @@ module ProyectoFinal
 
     config.time_zone = 'America/Santiago'
 
-    config.active_record.default_timezone = :local
+    # config.active_record.default_timezone = :local
 
     Groupdate.time_zone = 'America/Santiago'
     # Settings in config/environments/* take precedence over those specified here.
